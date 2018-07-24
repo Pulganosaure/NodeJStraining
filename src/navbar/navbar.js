@@ -1,17 +1,12 @@
 import React from 'react';
-import Routes_List from './../Routes/Route.js'
-import {Route, Router, withRouter, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import BGSData from './../BGSMonitoring/bgsmonitoring.js';
 
 class Navbar extends React.Component {
   render() {
-
-
-
-
     return (
       <div>
-        <NavLink>
+        <NavLink
           className='link'
           exact to='/BGSMonitoring'>
           BGSMonitoring
@@ -67,4 +62,4 @@ class Navbar extends React.Component {
     )}
   }
 
-  export default withRouter(Navbar);
+  export default Navbar;

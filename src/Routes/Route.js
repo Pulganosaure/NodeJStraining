@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Redirect, withRouter } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import BGSData from './../BGSMonitoring/bgsmonitoring.js'
 
 class Routes_List extends Component {
@@ -15,9 +15,9 @@ class Routes_List extends Component {
           <Route
             exact path='/Home'
           />
-          </Fragment>
+        </Fragment>
       </Fragment>
     )
   }
 }
-export default withRouter(Routes_List)
+export default Routes_List
