@@ -1,6 +1,8 @@
 import React from 'react'
-import * as EDSMAPI from './../EDSMAPI/system'
+import * as EDSMAPI from './../API/EDSM.js'
 import Collapse from './collapse.js'
+//import InfGraph from './InfluenceGraphic.js'
+import StationsDetails from './StationsDetails.js'
 
 class BGSData extends React.Component {
 
@@ -10,11 +12,15 @@ class BGSData extends React.Component {
       query: '',
       factions: [],
       cFaction: {},
+      systemName: '',
+      stationsDetails: [],
 
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.diplaySystem = this.diplaySystem.bind(this)
+    this.get_System_Details = this.get_System_Details.bind(this)
+    this.showSystemDetails = this.showSystemDetails.bind(this)
   }
 
   handleChange(e) {
@@ -22,11 +28,25 @@ class BGSData extends React.Component {
   }
 
   async diplaySystem() {
-    const data =  await EDSMAPI.systemData(this.state.query)
+    const data =  await EDSMAPI.factionsData(this.state.query)
     this.setState({
       factions: data.factions,
       cFaction: data.controllingFaction.name,
+      systemName: data.name,
     })
+  }
+
+  async get_System_Details() {
+    const data =  await EDSMAPI.systemDetails(this.state.systemName)
+    this.setState({
+      stationsDetails: data.stations,
+    })
+  }
+
+  showSystemDetails()
+  {
+    this.get_System_Details()
+    return <StationsDetails stationsDetails={this.state.stationsDetails}/>
   }
 
   render() {
@@ -50,11 +70,20 @@ class BGSData extends React.Component {
               </div>
             </div>
           </div>
-
-        <h1>{cFaction.name}</h1>
-        {factions.map(faction =>
-          <Collapse ownerName={cFaction} fData={faction}/>
-        )}
+          <div id="graphic">
+            {/* <InfGraph systemName={query} data={factions}/> */}
+          </div>
+          <div id="factionData">
+            {factions.map(faction =>
+              <Collapse ownerName={cFaction} fData={faction}/>
+            )}
+          </div>
+          <div id="">
+            <button type="submit" className="btn"
+               onClick={this.showSystemDetails}>
+              SHOW DETAILS
+            </button>
+          </div>
       </div>
     )
   }

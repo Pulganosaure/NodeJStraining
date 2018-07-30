@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "express": "^4.16.3",
+    "highcharts": "^6.1.1",
     "mysql": "^2.15.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
@@ -16,5 +15,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc-pulgan/NodeJStraining.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sc-pulgan/NodeJStraining/issues"
+  },
+  "homepage": "https://github.com/sc-pulgan/NodeJStraining#readme"
 }
