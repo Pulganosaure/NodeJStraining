@@ -1,21 +1,21 @@
 import React from 'react'
 
-
-
 class StationsDetails extends React.Component {
 
   constructor(props){
     super(props)
+
+    this.state = {
+      service_list: ['Black Market', 'Restock', 'Refuel', 'Repair', 'Contacts', 'Universal Cartographics', 'Missions', 'Crew Lounge', 'Tuning', 'Search and Rescue', 'Material Trader']
+    }
 
     this.station_card = this.station_card.bind(this)
     this.check_service = this.check_service.bind(this)
     this.search_value = this.search_value.bind(this)
   }
 
-  station_card(station)
-  {
-    const service_list = ['Black Market', 'Restock', 'Refuel', 'Repair', 'Contacts', 'Universal Cartographics', 'Missions', 'Crew Lounge', 'Tuning', 'Search and Rescue', 'Material Trader']
-    return(
+  station_card(station) {
+    return (
       <div className="card mb-4" style={{width: '22rem'}}>
         <div className="row">
           <div className="col">
@@ -34,43 +34,37 @@ class StationsDetails extends React.Component {
           {this.check_service(station.haveMarket, "Market")}
           {this.check_service(station.haveOutfitting, "Outfitting")}
           {this.check_service(station.haveShipyard, "Shipyard")}
-          {service_list.map(service => {
-            console.log(this.search_value(service, station.otherServices))
-              if(this.search_value(service, station.otherServices) == true )
-                return <p className="my-1 text-success" >{service}</p>
-              return <p className="my-1 text-danger" >{service}</p>
-            }
-            )}
+          { this.state.service_list.map(service => {
+              console.log(this.search_value(service, station.otherServices))
+              this.search_value(service, station.otherServices) === true
+                ? <p className="my-1 text-success" >{service}</p>
+                : <p className="my-1 text-danger" >{service}</p>
+            })
+          }
 
         </div>
-      </div>)
-    }
-
-    search_value(service_to_check, service_list)
-    {
-      service_list.map(service => {
-        if(service_to_check == service) {
-          return service
-        }
-        })
-      return false
-    }
-
-    check_service(service, name)
-    {
-      if(service)
-      return (<p className="text-success my-1">{name}</p>)
-      return (<p className="text-danger my-1">{name}</p>)
-
-    }
-
-
-//bonjour
-    render()
-    {
-      return(
-        this.station_card(this.props.data)
-      )
-    }
+      </div>
+    )
   }
-  export default StationsDetails;
+
+  search_value(service_to_check, service_list) {
+    this.state.service_list.map(service => {
+      if(service_to_check === service) return service
+    })
+    return false
+  }
+
+  check_service(service, name) {
+    service
+      ? <p className="text-success my-1">{name}</p>
+      : <p className="text-danger my-1">{name}</p>
+  }
+
+  render() {
+    return(
+      this.station_card(this.props.data)
+    )
+  }
+}
+
+export default StationsDetails;
