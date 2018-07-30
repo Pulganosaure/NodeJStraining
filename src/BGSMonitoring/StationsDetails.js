@@ -11,7 +11,6 @@ class StationsDetails extends React.Component {
 
     this.station_card = this.station_card.bind(this)
     this.check_service = this.check_service.bind(this)
-    this.search_value = this.search_value.bind(this)
   }
 
   station_card(station) {
@@ -35,10 +34,11 @@ class StationsDetails extends React.Component {
           {this.check_service(station.haveOutfitting, "Outfitting")}
           {this.check_service(station.haveShipyard, "Shipyard")}
           { this.state.service_list.map(service => {
-              console.log(this.search_value(service, station.otherServices))
-              this.search_value(service, station.otherServices) === true
-                ? <p className="my-1 text-success" >{service}</p>
-                : <p className="my-1 text-danger" >{service}</p>
+              if (station.otherServices.includes(service)) {
+                return <p className="my-1 text-success" >{service}</p>
+              } else {
+                return <p className="my-1 text-danger" >{service}</p>
+              }
             })
           }
 
@@ -47,12 +47,6 @@ class StationsDetails extends React.Component {
     )
   }
 
-  search_value(service_to_check, service_list) {
-    this.state.service_list.map(service => {
-      if(service_to_check === service) return service
-    })
-    return false
-  }
 
   check_service(service, name) {
     service
