@@ -14,13 +14,13 @@ class BGSData extends React.Component {
       cFaction: {},
       systemName: '',
       stationsDetails: [],
+      displaybutton: false
 
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.diplaySystem = this.diplaySystem.bind(this)
     this.get_System_Details = this.get_System_Details.bind(this)
-    this.showSystemDetails = this.showSystemDetails.bind(this)
   }
 
   handleChange(e) {
@@ -33,6 +33,7 @@ class BGSData extends React.Component {
       factions: data.factions,
       cFaction: data.controllingFaction.name,
       systemName: data.name,
+      displaybutton: true,
     })
   }
 
@@ -40,14 +41,10 @@ class BGSData extends React.Component {
     const data =  await EDSMAPI.systemDetails(this.state.systemName)
     this.setState({
       stationsDetails: data.stations,
+      displaybutton: false,
     })
   }
 
-  showSystemDetails()
-  {
-    this.get_System_Details()
-    return <StationsDetails stationsDetails={this.state.stationsDetails}/>
-  }
 
   render() {
     const { factions, query, cFaction } = this.state
@@ -78,11 +75,19 @@ class BGSData extends React.Component {
               <Collapse ownerName={cFaction} fData={faction}/>
             )}
           </div>
-          <div id="">
+          <div>
+            {this.state.displaybutton ?
             <button type="submit" className="btn"
-               onClick={this.showSystemDetails}>
+               onClick={this.get_System_Details}>
               SHOW DETAILS
             </button>
+            : null
+          }
+          </div>
+          <div className="row justify-content-around mt-5 mb-5">
+            {this.state.stationsDetails.map(station =>
+              <StationsDetails data={station}/>
+            )}
           </div>
       </div>
     )

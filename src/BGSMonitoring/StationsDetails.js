@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+
+
 
 class StationsDetails extends React.Component {
 
@@ -7,58 +9,68 @@ class StationsDetails extends React.Component {
 
     this.station_card = this.station_card.bind(this)
     this.check_service = this.check_service.bind(this)
+    this.search_value = this.search_value.bind(this)
   }
 
   station_card(station)
   {
-    console.log("station_card")
+    const service_list = ['Black Market', 'Restock', 'Refuel', 'Repair', 'Contacts', 'Universal Cartographics', 'Missions', 'Crew Lounge', 'Tuning', 'Search and Rescue', 'Material Trader']
     return(
-    <div className="card mb-4" style="width: 22rem;">
-      <div className="row">
-        <div className="col">
-          <img className="card-img-top" src={"Stations_Icons/" + station.type} alt="Card image cap"></img>
+      <div className="card mb-4" style={{width: '22rem'}}>
+        <div className="row">
+          <div className="col">
+            <img class="card-img-top" src={"Stations_Icons/" +station.type} alt="Card image cap"></img>
+          </div>
+          <div className="col">
+            <h5 className="card-title"> {station.name}</h5>
+            <h6 className="card-subtitle mb-2 border-bottom text-muted"> {station.controllingFaction.name}</h6>
+            <h6 className="card-subtitle my-1">{station.allegiance}</h6>
+            <h6 className="card-subtitle my-1">{station.government}</h6>
+            <h6 className="card-subtitle my-1">{station.economy}</h6>
+            <h6 className="card-subtitle mt-2"> {station.distanceToArrival.toFixed(2)}</h6>
+          </div>
         </div>
-        <div className="col">
-          <h5 className="card-title"> {station.name}</h5>
-          <h6 className="card-subtitle mb-2 border-bottom text-muted"> {station.controllingFaction.name}</h6>
-          <h6 className="card-subtitle my-1">{station.allegiance}</h6>
-          <h6 className="card-subtitle my-1">{station.government}</h6>
-          <h6 className="card-subtitle my-1">{station.economy}</h6>
-          <h6 className="card-subtitle mt-2"> {station.distanceToArrival.toFixed(2)}</h6>
+        <div className="card-body border-top">
+          {this.check_service(station.haveMarket, "Market")}
+          {this.check_service(station.haveOutfitting, "Outfitting")}
+          {this.check_service(station.haveShipyard, "Shipyard")}
+          {service_list.map(service => {
+            console.log(this.search_value(service, station.otherServices))
+              if(this.search_value(service, station.otherServices) == true )
+                return <p className="my-1 text-success" >{service}</p>
+              return <p className="my-1 text-danger" >{service}</p>
+            }
+            )}
+
         </div>
-      </div>
-      <div className="card-body border-top">
-        {this.check_service(station.otherServices, station.haveMarket, station.haveOutfitting, station.haveShipyard)}
-      </div>
-    </div>)
-  }
-  check_service(station_services, have_market, have_outfitting, have_shipyard)
-  {
-    var check_services = ("Restock", "Refuel", "Repair", "Black Market", "Interstellar Factors Contact", "Material Trader")
-    if(have_market)
-    return <p class="my-1 text-success">Market</p>
-    else
-    return <p class="my-1 text-danger ">Market</p>
-    if(have_outfitting)
-    return <p class="my-1 text-success">Outfitting</p>
-    else
-    return <p class="my-1 text-danger ">Outfitting</p>
-    if(have_shipyard)
-    return <p class="my-1 text-success">Shipyard</p>
-    else
-    return <p class="my-1 text-danger ">Shipyard</p>
-  }
+      </div>)
+    }
+
+    search_value(service_to_check, service_list)
+    {
+      service_list.map(service => {
+        if(service_to_check == service) {
+          return service
+        }
+        })
+      return false
+    }
+
+    check_service(service, name)
+    {
+      if(service)
+      return (<p className="text-success my-1">{name}</p>)
+      return (<p className="text-danger my-1">{name}</p>)
+
+    }
 
 
 
-  render()
-  {
-    console.log('stationsdetails.js')
-    return(
-      this.props.stationsDetails.map(station =>
-        this.station_card(station)
-    )
-  )
+    render()
+    {
+      return(
+        this.station_card(this.props.data)
+      )
+    }
   }
-}
-export default StationsDetails;
+  export default StationsDetails;

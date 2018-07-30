@@ -7,7 +7,7 @@ class InscriptionForm extends Component {
       <Fragment>
       <form method="" action="" className="mt-5 my-4">
         <div className="form-group">
-          <label htmlFor="username_input">nom de commandant :</label>
+          <label htmlFor="username_input">nom d'utilisateur :</label>
           <input type="text" name="username" id="username_input" className="form-control"></input>
         </div>
         <div className="form-group">
