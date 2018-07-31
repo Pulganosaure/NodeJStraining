@@ -22,11 +22,15 @@ class StationsDetails extends React.Component {
           </div>
           <div className="col">
             <h5 className="card-title"> {station.name}</h5>
-            <h6 className="card-subtitle mb-2 border-bottom text-muted"> {station.controllingFaction.name}</h6>
+            <h6 className="card-subtitle mb-2 border-bottom text-muted"> {
+              (typeof station.controllingFaction != "undefined")
+              ? station.controllingFaction.name
+              : "None"
+            }</h6>
             <h6 className="card-subtitle my-1">{station.allegiance}</h6>
             <h6 className="card-subtitle my-1">{station.government}</h6>
             <h6 className="card-subtitle my-1">{station.economy}</h6>
-            <h6 className="card-subtitle mt-2"> {station.distanceToArrival.toFixed(2)}</h6>
+            <h6 className="card-subtitle mt-2"> {station.distanceToArrival.toFixed(2) + " ls"}</h6>
           </div>
         </div>
         <div className="card-body border-top">
@@ -48,6 +52,7 @@ class StationsDetails extends React.Component {
   }
 
 
+//return the text for the service who are boolean
   check_service(service, name) {
     service
       ? <p className="text-success my-1">{name}</p>

@@ -21,6 +21,8 @@ class BGSData extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.diplaySystem = this.diplaySystem.bind(this)
     this.get_System_Details = this.get_System_Details.bind(this)
+    this.no_result = this.no_result.bind(this)
+    this.system_isempty = this.system_isempty.bind(this)
   }
 
   handleChange(e) {
@@ -31,13 +33,17 @@ class BGSData extends React.Component {
     const data =  await EDSMAPI.factionsData(this.state.query)
     this.setState({
       factions: data.factions,
-      cFaction: data.controllingFaction.name,
       systemName: data.name,
       displaybutton: true,
     })
+    if((typeof data.controllingFaction) != "undefined")
+    this.setState({cFaction: data.controllingFaction.name})
   }
-
   async get_System_Details() {
+    if(this.state.query = '')
+    {
+      return null
+    }
     const data =  await EDSMAPI.systemDetails(this.state.systemName)
     this.setState({
       stationsDetails: data.stations,
@@ -45,53 +51,71 @@ class BGSData extends React.Component {
     })
   }
 
+no_result()
+{
+  this.state.displaybutton = false
+  return <h2> Aucun résultat</h2>
+}
+
+system_isempty()
+{
+  this.state.displaybutton = false
+  return <h2>Ce système est vide</h2>
+}
 
   render() {
-    const { factions, query, cFaction } = this.state
+    const { factions, query, cFaction, displaybutton } = this.state
     return (
       <div>
-          <div className="form-group mt-3">
-            <div className="row">
-              <div className="col pr-0">
-                <input name="system_name" className="form-control" placeholder="SOL"
-                  type="text"
-                  value={query}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="col pl-0">
-                <button type="submit" className="btn"
-                  onClick={this.diplaySystem}>
-                  SEND
-                </button>
-              </div>
+        <div className="form-group mt-3">
+          <div className="row">
+            <div className="col pr-0">
+              <input name="system_name" className="form-control" placeholder="SOL"
+                type="text"
+                value={query}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="col pl-0">
+              <button type="submit" className="btn"
+                onClick={this.diplaySystem}>
+                SEND
+              </button>
             </div>
           </div>
-          <div id="graphic">
-            {/* <InfGraph systemName={query} data={factions}/> */}
-          </div>
-          <div id="factionData">
-            {factions.map(faction =>
-              <Collapse ownerName={cFaction} fData={faction}/>
-            )}
+        </div>
+        <div id="graphic">
+          {/* <InfGraph systemName={query} data={factions}/> */}
+        </div>
+        <div id="factionData">
+          {
+            (factions != null && this.state.systemName != '')
+            ? (factions != '')
+              ? factions.map(faction => <Collapse ownerName={cFaction} fData={faction}/>)
+              : this.system_isempty()
+            : (this.state.systemName == '')
+              ? null
+              : this.no_result()
+
+            }
           </div>
           <div>
             {this.state.displaybutton ?
-            <button type="submit" className="btn"
-               onClick={this.get_System_Details}>
-              SHOW DETAILS
-            </button>
-            : null
-          }
+              <button type="submit" className="btn"
+                onClick={this.get_System_Details}>
+                SHOW DETAILS
+              </button>
+              : null
+            }
           </div>
           <div className="row justify-content-around mt-5 mb-5">
             {this.state.stationsDetails.map(station =>
               <StationsDetails data={station}/>
             )}
           </div>
-      </div>
-    )
+        </div>
+      )
+    }
   }
-}
 
-export default BGSData
+  export default BGSData
