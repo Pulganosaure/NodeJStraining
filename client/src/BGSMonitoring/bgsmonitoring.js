@@ -15,7 +15,6 @@ class BGSData extends React.Component {
       systemName: '',
       stationsDetails: [],
       displaybutton: false
-
     }
 
     this.handleChange = this.handleChange.bind(this)

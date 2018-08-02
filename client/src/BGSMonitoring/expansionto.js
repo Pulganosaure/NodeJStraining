@@ -11,7 +11,7 @@ class ExpendTo extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.getSystemList = this.getSystemList.bind(this)
-
+    this.filterSystem = this.filterSystem.bind(this)
   }
 
   handleChange(e) {
