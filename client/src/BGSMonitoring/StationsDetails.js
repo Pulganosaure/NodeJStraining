@@ -18,7 +18,7 @@ class StationsDetails extends React.Component {
       <div className="card mb-4" style={{width: '22rem'}}>
         <div className="row">
           <div className="col">
-            <img class="card-img-top" src={"Stations_Icons/" +station.type} alt="file not found"></img>
+            <img class="card-img-top" src="Station_Icons/Asteroid base.png" alt="file not found"></img>
           </div>
           <div className="col">
             <h5 className="card-title"> {station.name}</h5>

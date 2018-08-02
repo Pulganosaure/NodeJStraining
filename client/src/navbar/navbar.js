@@ -30,6 +30,11 @@ class Navbar extends React.Component {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink
+                className='nav-link'
+                exact to='/expandto'>
+                Expansions
+              </NavLink>
             </li>
           </ul>
 

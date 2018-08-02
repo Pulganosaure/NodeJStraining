@@ -4,6 +4,7 @@ import BGSData from './../BGSMonitoring/bgsmonitoring.js'
 import ConnexionForms from './../Sessions/Connexion.js'
 import InscriptionForms from './../Sessions/Inscription.js'
 import Test from '../wip/test.js'
+import ExpendTo from '../BGSMonitoring/expansionto.js'
 
 
 class Routes_List extends Component {
@@ -22,6 +23,10 @@ class Routes_List extends Component {
           <Route
             exact path='/test'
             component={Test}
+          />
+          <Route
+            exact path='/expandto'
+            component={ExpendTo}
           />
           <Route
             exact path='/inscription'

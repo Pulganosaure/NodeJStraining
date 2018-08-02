@@ -15,3 +15,12 @@ fetch(`https://www.edsm.net/api-system-v1/stations?systemName=${systemName}`, {
   },
 }) .then(res => res.json())
 .then(data => data)
+
+export const systemAroundTarget = (systemName) =>
+fetch(`https://www.edsm.net/api-v1/sphere-systems?systemName=Karka&radius=70"`, {
+  method: 'get',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+}) .then(res => res.json())
+.then(data => data)
