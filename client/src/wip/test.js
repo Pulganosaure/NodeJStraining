@@ -1,7 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-import Collapse from 'react-collapse';
-import Collapsetest from './collapsetest.js'
+
 
 
 class Test extends React.Component {
@@ -9,12 +7,11 @@ class Test extends React.Component {
 
   render() {
       return (
-
         <div>
-          <Collapsetest/>
-          <Collapsetest/>
+          <h1>this component have been correctly loaded</h1>
+          <p>this page is only for testing some scripts before implementing in the others scripts</p>
         </div>
-      );
+      )
     }
 
 }
