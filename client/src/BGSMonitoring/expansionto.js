@@ -21,8 +21,14 @@ class ExpendTo extends React.Component {
   async getSystemList() {
     const data =  await EDSMAPI.systemAroundTarget(this.state.query)
     this.setState({
-      systemList: data.sort((a, b) => (Object.keys(b.distance)) - (Object.keys(a.distance))),
+      systemList: data.sort((a, b) => a.distance - b.distance),
     })
+  }
+
+  filterSystem() {
+    const value = 0
+    const systemListSort = this.state.systemList.map(system => <h2>{system.distance}</h2>)
+    return systemListSort.slice(1, (systemListSort.length -1))
   }
 
   render() {
@@ -44,13 +50,7 @@ class ExpendTo extends React.Component {
             </button>
           </div>
         </div>
-        <div>
-          {
-            this.state.systemList.map(system => <h2>{system.distance}</h2>)
-          }
-
-          }
-        </div>
+        <div>{this.filterSystem()}</div>
       </div>
     )
   }
