@@ -5,9 +5,10 @@ import ConnexionForms from './../Sessions/Connexion.js'
 import InscriptionForms from './../Sessions/Inscription.js'
 import Test from '../wip/test.js'
 import ExpendTo from '../BGSMonitoring/expansionto.js'
+import ProfileHome from '../profils/home.js'
 
 
-class Routes_List extends Component {
+class RoutesList extends Component {
 
   render() {
     return (
@@ -29,6 +30,10 @@ class Routes_List extends Component {
             component={ExpendTo}
           />
           <Route
+            exact path='/Profil'
+            component={ProfileHome}
+          />
+          <Route
             exact path='/inscription'
             component={InscriptionForms}
           />
@@ -36,9 +41,10 @@ class Routes_List extends Component {
             exact path='/connexion'
             component={ConnexionForms}
           />
+
         </Fragment>
       </Fragment>
     )
   }
 }
-export default Routes_List
+export default RoutesList

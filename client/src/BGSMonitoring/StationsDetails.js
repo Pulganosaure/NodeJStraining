@@ -54,9 +54,9 @@ class StationsDetails extends React.Component {
 
 //return the text for the service who are boolean
   check_service(service, name) {
-    service
-      ? <p className="text-success my-1">{name}</p>
-      : <p className="text-danger my-1">{name}</p>
+    if(service)
+      return <p className="text-success my-1">{name}</p>
+    return <p className="text-danger my-1">{name}</p>
   }
 
   render() {

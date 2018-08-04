@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './navbar/navbar.js'
 import './Bootstrap/bootstrap.min.css'
-import Routes_List from './Routes/Route'
+import RoutesList from './Routes/Route'
 
 
 
@@ -13,11 +13,7 @@ class App extends Component {
           <Navbar/>
         </header>
         <div className="container">
-          <div className="row">
-            <div className="col">
-              <Routes_List/>
-            </div>
-          </div>
+          <RoutesList/>
         </div>
       </div>
     )

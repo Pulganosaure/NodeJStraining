@@ -1,7 +1,7 @@
 import React from 'react';
 import Collapse from 'react-collapse';
 
-class Collapse_BGS extends React.Component {
+class BGSCollapse extends React.Component {
 
   constructor(props){
     super(props)
@@ -120,4 +120,4 @@ class Collapse_BGS extends React.Component {
   )
 }
 }
-export default Collapse_BGS;
+export default BGSCollapse;

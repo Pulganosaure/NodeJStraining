@@ -1,6 +1,6 @@
 import React from 'react'
 import * as EDSMAPI from './../API/EDSM.js'
-import Collapse_BGS from './collapse.js'
+import BGSCollapse from './collapse.js'
 //import InfGraph from './InfluenceGraphic.js'
 import StationsDetails from './StationsDetails.js'
 
@@ -99,7 +99,9 @@ system_isempty()
             ? (factions !== '')
               ? factions.map(faction => {
                   if(faction.influence !== 0)
-                    return <Collapse_BGS ownerName={cFaction} fData={faction}/>})
+                    return <BGSCollapse ownerName={cFaction} fData={faction}/>
+                  return 1
+                })
               : this.system_isempty()
             : (this.state.systemName === '')
               ? null

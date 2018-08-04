@@ -1,6 +1,6 @@
 import React from 'react'
 import * as EDSMAPI from './../API/EDSM.js'
-import ExpendCardResult from './expansionCardResult.js'
+import ExpansionCardResult from './expansionCardResult.js'
 
 class ExpendTo extends React.Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class ExpendTo extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.getSystemList = this.getSystemList.bind(this)
-    this.filterSystem = this.filterSystem.bind(this)
   }
 
   handleChange(e) {
@@ -21,14 +20,8 @@ class ExpendTo extends React.Component {
   async getSystemList() {
     const data =  await EDSMAPI.systemAroundTarget(this.state.query)
     this.setState({
-      systemList: data.sort((a, b) => a.distance - b.distance),
+      systemList: data.sort((a, b) => a.distance - b.distance).slice(1, (data.length -1))
     })
-  }
-
-  filterSystem() {
-    const value = 0
-    const systemListSort = this.state.systemList.map(system => <h2>{system.distance}</h2>)
-    return systemListSort.slice(1, (systemListSort.length -1))
   }
 
   render() {
@@ -50,7 +43,15 @@ class ExpendTo extends React.Component {
             </button>
           </div>
         </div>
-        <div>{this.filterSystem()}</div>
+        <div>
+          {/* nombre de systèmes a checker */}
+          {<h1>{systemList.length + " to check"}</h1>}
+
+          {/* pour tout les systèmes on appel le component qui ira voir si il y a une place pour une expansion */}
+          {systemList.map(system => {
+            return <ExpansionCardResult system={system}/>
+        })
+      }</div>
       </div>
     )
   }

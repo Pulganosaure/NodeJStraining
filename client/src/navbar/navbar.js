@@ -7,6 +7,7 @@ class Navbar extends React.Component {
     return (
       <div>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark text-light">
+        <div className="container">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink
@@ -36,6 +37,13 @@ class Navbar extends React.Component {
                 Expansions
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className='nav-link'
+                exact to='/profil'>
+                Profil
+              </NavLink>
+            </li>
           </ul>
 
 
@@ -55,6 +63,7 @@ class Navbar extends React.Component {
               </NavLink>
             </li>
           </ul>
+        </div>
       </nav>
     </div>
     )}
