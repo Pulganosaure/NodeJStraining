@@ -8,18 +8,27 @@ class ProfileCharacters extends React.Component {
     this.state = {
       characters: [],
     }
-    this.getCharacters = this.getCharacters.bind(this)
+    this.printchars = this.printchars.bind(this)
   }
 
-  async getCharacters() {
-    const data =  await gw2api.getCharactersList()
-    this.setState({
-      characters: data,
+printchars()
+{
+  const {characters} = this.state
+
+  if(characters !== '')
+    characters.map(character => {
+    return <h1>{character}</h1>
     })
-  }
+}
+  async componentDidMount() {
+      const data =  await gw2api.getCharactersList()
+      console.log(data)
+      this.setState({
+        characters: data,
+      })
+    }
   render()
   {
-    const {characters} = this.state
     return (
       <Fragment>
         <div className="row justify-content-md-center">
@@ -31,11 +40,7 @@ class ProfileCharacters extends React.Component {
             </tbody>
           </table>
         </div>
-              {this.getCharacters()
-              }
-              {//characters.map(character => {
-                //return <h1>{character}</h1>
-                //})
+              {this.printchars()
               }
       </Fragment>)
     }

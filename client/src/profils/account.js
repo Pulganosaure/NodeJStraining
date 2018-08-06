@@ -14,7 +14,6 @@ class ProfileAccount extends React.Component {
         TotalPlaytime: "Player_TotalPlaytime",
       }
     }
-    console.log(user)
     return (
       <Fragment>
         <div className="row justify-content-md-center">
