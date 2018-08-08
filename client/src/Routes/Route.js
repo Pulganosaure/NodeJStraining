@@ -3,9 +3,9 @@ import { Route } from 'react-router-dom'
 import BGSData from './../BGSMonitoring/bgsmonitoring.js'
 import ConnexionForms from './../Sessions/Connexion.js'
 import InscriptionForms from './../Sessions/Inscription.js'
-import Test from '../wip/test.js'
 import ExpendTo from '../BGSMonitoring/expansionto.js'
 import ProfileHome from '../profils/home.js'
+import EventHome from '../events/home.js'
 
 
 class RoutesList extends Component {
@@ -22,16 +22,16 @@ class RoutesList extends Component {
             exact path='/Home'
           />
           <Route
-            exact path='/test'
-            component={Test}
-          />
-          <Route
             exact path='/expandto'
             component={ExpendTo}
           />
           <Route
             exact path='/Profil'
             component={ProfileHome}
+          />
+          <Route
+            exact path='/Events'
+            component={EventHome}
           />
           <Route
             exact path='/inscription'

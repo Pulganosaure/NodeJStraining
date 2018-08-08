@@ -1,11 +1,12 @@
-const API = 'https://api.guildwars2.com/v2/characters'
-const token = 'Bearer 4F5E7E01-871B-BB4E-ACB7-42B2B05035C5DFC8B1F5-CD38-44A8-AEA1-A7AE46A2B03C'
+//const API = 'https://api.guildwars2.com/v2/characters'
+const token = 'Bearer <APIKEY>'
+const API = 'https://api.guildwars2.com/v2/characters?access_token=4F5E7E01-871B-BB4E-ACB7-42B2B05035C5DFC8B1F5-CD38-44A8-AEA1-A7AE46A2B03C'
 
 
 export const getCharactersList = () =>
   fetch(API, {
     method: 'get',
-    //"mode" : "no-cors",
+    "mode" : "no-cors",
     headers: {
       'Accept': 'application/json',
       'Authorization': token,

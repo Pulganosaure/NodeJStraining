@@ -26,13 +26,6 @@ class Navbar extends React.Component {
             <li className="nav-item">
               <NavLink
                 className='nav-link'
-                exact to='/test'>
-                test
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className='nav-link'
                 exact to='/expandto'>
                 Expansions
               </NavLink>
@@ -42,6 +35,13 @@ class Navbar extends React.Component {
                 className='nav-link'
                 exact to='/profil'>
                 Profil
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className='nav-link'
+                exact to='/events'>
+                Events
               </NavLink>
             </li>
           </ul>
