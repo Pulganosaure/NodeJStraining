@@ -5,14 +5,18 @@ import ProfileSecurity from './security.js'
 import ProfilEvents from './events.js'
 import ProfileCharacters from './characters.js'
 import '../Bootstrap/bootstrap.min.css'
+import * as profilsAPI from '../API/profils.js'
 
 class ProfileHome extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      onglet: ''
+      onglet: '',
+      users: []
+
     }
     this.switchOnglet = this.switchOnglet.bind(this)
+    this.getUsers = this.getUsers.bind(this)
   }
 
   switchOnglet()
@@ -30,6 +34,15 @@ class ProfileHome extends React.Component {
       return <ProfileAccount/>
     }
   }
+  async getUsers()
+  {
+     var data = await profilsAPI.getUserList()
+     console.log(data)
+      this.setState({
+        users: data
+      })
+  }
+
   render()
   {
     return (
@@ -82,7 +95,15 @@ class ProfileHome extends React.Component {
                 )}>
                 Events
               </button>
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={this.getUsers()}>
+                ...
+              </button>
             </ul>
+            <div>
+              {this.state.users.map(user => <h1>{user.username}</h1>)}
+            </div>
           </div>
           <div className="col-10 pr-0">
             {this.switchOnglet()}

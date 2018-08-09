@@ -7,12 +7,17 @@ class ProfileAccount extends React.Component {
   {
     var user = {
       informations: {
-        username: "player_username",
-        mastery: "player_mastery",
-        joinDate: "player_JoinDate",
-        ArchivementsPoints: "player_ArchivementsPoints",
-        TotalPlaytime: "Player_TotalPlaytime",
-      }
+        basicinfo: {
+          username: "playerUsername",
+          email: 'email@email.com',
+          joindate: "playerJoinDate",
+        },
+        gw2account: {
+          mastery: "playerMastery",
+          archivementspoints: "playerArchivementsPoints",
+          totalplaytime: "PlayerTotalPlaytime",
+        },
+      },
     }
     return (
       <Fragment>
@@ -24,23 +29,23 @@ class ProfileAccount extends React.Component {
             <tbody>
               <tr>
                 <td>username :</td>
-                <td>{user.informations.username}</td>
+                <td>{user.informations.basicinfo.username}</td>
+              </tr>
+              <tr>
+                <td>join date :</td>
+                <td>{user.informations.basicinfo.joindate}</td>
               </tr>
               <tr>
                 <td>mastery :</td>
-                <td>{user.informations.mastery}</td>
+                <td>{user.informations.gw2account.mastery}</td>
               </tr>
               <tr>
-                <td>join date :</td>
-                <td>{user.informations.joinDate}</td>
+                <td>Archivements Points :</td>
+                <td>{user.informations.gw2account.archivementspoints}</td>
               </tr>
               <tr>
-                <td>join date :</td>
-                <td>{user.informations.ArchivementsPoints}</td>
-              </tr>
-              <tr>
-                <td>join date :</td>
-                <td>{user.informations.TotalPlaytime}</td>
+                <td>Total Playtime :</td>
+                <td>{user.informations.gw2account.totalplaytime}</td>
               </tr>
             </tbody>
           </table>

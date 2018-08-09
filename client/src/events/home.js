@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react'
-import EventCalendars from './calendars.js'
 import EventForm from './eventform.js'
 import Countdown from 'react-countdown-now'
 import Calendar from 'react-calendar';
