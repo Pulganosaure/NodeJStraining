@@ -39,7 +39,6 @@ class ProfileHome extends React.Component {
       this.setState({
         users: data,
       }))
-
     }
 
     render()
