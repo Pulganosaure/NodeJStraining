@@ -12,11 +12,9 @@ class ProfileHome extends React.Component {
     super(props)
     this.state = {
       onglet: '',
-      users: []
-
+      users: [],
     }
     this.switchOnglet = this.switchOnglet.bind(this)
-    this.getUsers = this.getUsers.bind(this)
   }
 
   switchOnglet()
@@ -34,84 +32,77 @@ class ProfileHome extends React.Component {
       return <ProfileAccount/>
     }
   }
-  async getUsers()
-  {
-     var data = await profilsAPI.getUserList()
-     console.log(data)
-      this.setState({
-        users: data
-      })
-  }
 
-  render()
-  {
-    return (
-      <div className="mt-5">
-        <div className="row">
-          <div className="col-2 pl-0">
-            <ul className="list-group mt-5 pt-4">
-              <button type="button"
-                className="list-group-item list-group-item-action"
-                onClick={() => this.setState(
-                  {
-                    onglet: "Account"
-                  }
-                )}>
-                Account
-              </button>
-              <button type="button"
-                className="list-group-item list-group-item-action"
-                onClick={() => this.setState(
-                  {
-                    onglet: "Security"
-                  }
-                )}>
-                Security
-              </button>
-              <button type="button"
-                className="list-group-item list-group-item-action"
-                onClick={() => this.setState(
-                  {
-                    onglet: "Characters"
-                  }
-                )}>
-                My Characters
-              </button>
-              <button type="button"
-                className="list-group-item list-group-item-action"
-                onClick={() => this.setState(
-                  {
-                    onglet: "Archivements"
-                  }
-                )}>
-                Archivements
-              </button>
-              <button type="button"
-                className="list-group-item list-group-item-action"
-                onClick={() => this.setState(
-                  {
-                    onglet: "Events"
-                  }
-                )}>
-                Events
-              </button>
-              <button type="button"
-                className="list-group-item list-group-item-action"
-                onClick={this.getUsers()}>
-                ...
-              </button>
-            </ul>
-            <div>
-              {this.state.users.map(user => <h1>{user.username}</h1>)}
+  componentDidMount() {
+    profilsAPI.getUserList()
+    .then(data =>
+      this.setState({
+        users: data,
+      }))
+
+    }
+
+    render()
+    {
+      return (
+        <div className="mt-5">
+          <div className="row">
+            <div className="col-2 pl-0">
+              <ul className="list-group mt-5 pt-4">
+                <button type="button"
+                  className="list-group-item list-group-item-action"
+                  onClick={() => this.setState(
+                    {
+                      onglet: "Account"
+                    }
+                  )}>
+                  Account
+                </button>
+                <button type="button"
+                  className="list-group-item list-group-item-action"
+                  onClick={() => this.setState(
+                    {
+                      onglet: "Security"
+                    }
+                  )}>
+                  Security
+                </button>
+                <button type="button"
+                  className="list-group-item list-group-item-action"
+                  onClick={() => this.setState(
+                    {
+                      onglet: "Characters"
+                    }
+                  )}>
+                  My Characters
+                </button>
+                <button type="button"
+                  className="list-group-item list-group-item-action"
+                  onClick={() => this.setState(
+                    {
+                      onglet: "Archivements"
+                    }
+                  )}>
+                  Archivements
+                </button>
+                <button type="button"
+                  className="list-group-item list-group-item-action"
+                  onClick={() => this.setState(
+                    {
+                      onglet: "Events"
+                    }
+                  )}>
+                  Events
+                </button>
+              </ul>
+            </div>
+            <div className="col-10 pr-0">
+              {this.switchOnglet()}
             </div>
           </div>
-          <div className="col-10 pr-0">
-            {this.switchOnglet()}
-          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
-}
 
-export default ProfileHome
+  export default ProfileHome

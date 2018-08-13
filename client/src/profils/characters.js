@@ -22,7 +22,6 @@ printchars()
 }
   async componentDidMount() {
       const data =  await gw2api.getCharactersList()
-      console.log(data)
       this.setState({
         characters: data,
       })

@@ -27,33 +27,43 @@ class ProfileArchivements extends React.Component {
       {name: "Master",
       desc: "Get 500 Archivements points.",
       unlock: false,
-      icon: "url/picture.jpg"
+      rank: "copper",
+      icon: "url/picture.jpg",
+      value: 5,
     },
     {
       name: "Fana des événements",
       desc: "Participate at 20 events",
       unlock: true,
-      icon: "url/picture.jpg"
+      rank: "copper",
+      icon: "url/picture.jpg",
+      value: 5,
     },
     {
       name: "Grand fana des événements",
       desc: "Participate at 50 events",
       unlock: false,
-      icon: "url/picture.jpg"
+      rank: "silver",
+      icon: "url/picture.jpg",
+      value: 10,
 
     },
     {
-      name: "Grand fana des événements",
-      desc: "Participate at 50 events",
+      name: "Adorateur des événements",
+      desc: "Participate at 100 events",
       unlock: false,
-      icon: "url/picture.jpg"
+      rank: "gold",
+      icon: "url/picture.jpg",
+      value: 25,
 
     },
     {
-      name: "Grand fana des événements",
-      desc: "Participate at 50 events",
+      name: "more comming soon",
+      desc: "and more trophy gonna be added soon...",
       unlock: false,
-      icon: "url/picture.jpg"
+      rank: "none",
+      icon: "url/picture.jpg",
+      value: "0",
 
     }
   ]

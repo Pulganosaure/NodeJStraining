@@ -1,8 +1,8 @@
 var mysql = require('mysql')
   , async = require('async')
 
-  var PRODUCTION_DB = 'galanews'
-    , TEST_DB = 'galanews'
+  var PRODUCTION_DB = 'gwsite'
+    , TEST_DB = 'gwsite'
 
   exports.MODE_TEST = 'mode_test'
   exports.MODE_PRODUCTION = 'mode_production'
