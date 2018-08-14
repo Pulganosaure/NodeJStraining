@@ -14,18 +14,14 @@ class ProfileCharacters extends React.Component {
 
   async componentDidMount() {
     const data = await gw2.getCharacterList()
+    const detail = await gw2.getCharacterDetails('Miss Yamada')
     this.setState({
       characters: data,
+      details: detail,
     })
-      this.state.characters.map(character => (
-        this.state.details.push(this.getDetails(character))
-      ))
+
   }
 
-  getDetails(name)
-  {
-    return gw2.getCharacterDetails(name)
-  }
   render() {
     const {characters} = this.state
     return (
@@ -40,7 +36,7 @@ class ProfileCharacters extends React.Component {
           </table>
         </div>
         <div>
-          {this.state.details.map(char => <h1>{char.name}</h1>)}
+
         </div>
       </Fragment>
     )
