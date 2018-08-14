@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const mysql = require('mysql')
 const profils = require('./routes/api/profils')
+const users = require('./routes/api/users')
 const archivements = require('./routes/api/archivements')
 const app = express();
 var db = require('./mysql/db')
@@ -17,6 +18,7 @@ const router = express.Router()
 
 app.use('/api/profils', profils)
 app.use('/api/archivements', archivements)
+app.use('/api/users', users)
 
 const port = process.env.PORT || 5000
 

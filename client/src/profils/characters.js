@@ -7,25 +7,25 @@ class ProfileCharacters extends React.Component {
     super(props)
     this.state = {
       characters: [],
+      details: [],
     }
-    this.printchars = this.printchars.bind(this)
+
   }
 
   async componentDidMount() {
-    const data = await gw2.getData()
+    const data = await gw2.getCharacterList()
     this.setState({
       characters: data,
     })
-  }
-  printchars() {
-    const {characters} = this.state
-    characters === ''
-      ? null
-      : characters.map((character, index) => (
-          <h1 key={index}>{character}</h1>
-        ))
+      this.state.characters.map(character => (
+        this.state.details.push(this.getDetails(character))
+      ))
   }
 
+  getDetails(name)
+  {
+    return gw2.getCharacterDetails(name)
+  }
   render() {
     const {characters} = this.state
     return (
@@ -39,10 +39,9 @@ class ProfileCharacters extends React.Component {
             </tbody>
           </table>
         </div>
-          { characters.map((character, index) => (
-              <h1 key={index}>{character}</h1>
-            ))
-          }
+        <div>
+          {this.state.details.map(char => <h1>{char.name}</h1>)}
+        </div>
       </Fragment>
     )
   }
