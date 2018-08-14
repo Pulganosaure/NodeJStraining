@@ -1,4 +1,4 @@
-#Install
+# Install
 - use npm install in the main folder
 - use npm install in the client folder
 - use npm run dev (if concurrently is missing, use "npm install -g concurrently")
@@ -13,8 +13,12 @@
 
 # API
 - profils :
-  - api/profils/users_list //return the list of the users
-  - api/profils/user?id=username //return the profile of the username
+  - api/profils/users_list
+    // return the list of the users
+  - api/profils/user?id=username
+    // return the profile of the username
 - archivements :
-  - api/archivements // return the list of all the archivements
-  - api/archivements/:categoryid   //return the list of the archiements of the category
+  - api/archivements
+    // return the list of all the archivements
+  - api/archivements/:categoryid   
+    // return the list of the archiements of the category

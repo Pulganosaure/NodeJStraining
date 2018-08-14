@@ -32,8 +32,14 @@ class ProfileHome extends React.Component {
     }
   }
 
-
-
+  componentDidMount() {
+    profilsAPI.getUserList()
+    .then(data =>
+      this.setState({
+        users: data,
+      }))
+    }
+    
   render() {
     return (
       <div className="mt-5">
