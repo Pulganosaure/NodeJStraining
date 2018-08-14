@@ -17,8 +17,7 @@ class ProfileHome extends React.Component {
     this.switchOnglet = this.switchOnglet.bind(this)
   }
 
-  switchOnglet()
-  {
+  switchOnglet() {
     switch (this.state.onglet) {
       case 'Security':
       return <ProfileSecurity/>
@@ -33,74 +32,66 @@ class ProfileHome extends React.Component {
     }
   }
 
-  componentDidMount() {
-    profilsAPI.getUserList()
-    .then(data =>
-      this.setState({
-        users: data,
-      }))
 
-    }
 
-    render()
-    {
-      return (
-        <div className="mt-5">
-          <div className="row">
-            <div className="col-2 pl-0">
-              <ul className="list-group mt-5 pt-4">
-                <button type="button"
-                  className="list-group-item list-group-item-action"
-                  onClick={() => this.setState(
-                    {
-                      onglet: "Account"
-                    }
-                  )}>
-                  Account
-                </button>
-                <button type="button"
-                  className="list-group-item list-group-item-action"
-                  onClick={() => this.setState(
-                    {
-                      onglet: "Security"
-                    }
-                  )}>
-                  Security
-                </button>
-                <button type="button"
-                  className="list-group-item list-group-item-action"
-                  onClick={() => this.setState(
-                    {
-                      onglet: "Characters"
-                    }
-                  )}>
-                  My Characters
-                </button>
-                <button type="button"
-                  className="list-group-item list-group-item-action"
-                  onClick={() => this.setState(
-                    {
-                      onglet: "Archivements"
-                    }
-                  )}>
-                  Archivements
-                </button>
-                <button type="button"
-                  className="list-group-item list-group-item-action"
-                  onClick={() => this.setState(
-                    {
-                      onglet: "Events"
-                    }
-                  )}>
-                  Events
-                </button>
-              </ul>
-            </div>
-            <div className="col-10 pr-0">
-              {this.switchOnglet()}
-            </div>
+  render() {
+    return (
+      <div className="mt-5">
+        <div className="row">
+          <div className="col-2 pl-0">
+            <ul className="list-group mt-5 pt-4">
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={() => this.setState(
+                  {
+                    onglet: "Account"
+                  }
+                )}>
+                Account
+              </button>
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={() => this.setState(
+                  {
+                    onglet: "Security"
+                  }
+                )}>
+                Security
+              </button>
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={() => this.setState(
+                  {
+                    onglet: "Characters"
+                  }
+                )}>
+                My Characters
+              </button>
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={() => this.setState(
+                  {
+                    onglet: "Archivements"
+                  }
+                )}>
+                Archivements
+              </button>
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={() => this.setState(
+                  {
+                    onglet: "Events"
+                  }
+                )}>
+                Events
+              </button>
+            </ul>
+          </div>
+          <div className="col-10 pr-0">
+            {this.switchOnglet()}
           </div>
         </div>
+      </div>
       )
     }
   }

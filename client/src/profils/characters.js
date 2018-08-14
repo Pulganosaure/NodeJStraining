@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import * as gw2api from '../API/gw2.js'
+import gw2 from '../API/gw2.js'
 
 
 class ProfileCharacters extends React.Component {
@@ -11,23 +11,23 @@ class ProfileCharacters extends React.Component {
     this.printchars = this.printchars.bind(this)
   }
 
-printchars()
-{
-  const {characters} = this.state
-
-  if(characters !== '')
-    characters.map(character => {
-    return <h1>{character}</h1>
-    })
-}
   async componentDidMount() {
-      const data =  await gw2api.getCharactersList()
-      this.setState({
-        characters: data,
-      })
-    }
-  render()
-  {
+    const data = await gw2.getData()
+    this.setState({
+      characters: data,
+    })
+  }
+  printchars() {
+    const {characters} = this.state
+    characters === ''
+      ? null
+      : characters.map((character, index) => (
+          <h1 key={index}>{character}</h1>
+        ))
+  }
+
+  render() {
+    const {characters} = this.state
     return (
       <Fragment>
         <div className="row justify-content-md-center">
@@ -39,10 +39,13 @@ printchars()
             </tbody>
           </table>
         </div>
-              {this.printchars()
-              }
-      </Fragment>)
-    }
+          { characters.map((character, index) => (
+              <h1 key={index}>{character}</h1>
+            ))
+          }
+      </Fragment>
+    )
   }
+}
 
-  export default ProfileCharacters
+export default ProfileCharacters

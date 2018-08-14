@@ -24,7 +24,8 @@ class ProfileArchivements extends React.Component {
   {
 
     const  archivements = [
-      {name: "Master",
+    {
+      name: "Master",
       desc: "Get 500 Archivements points.",
       unlock: false,
       rank: "copper",

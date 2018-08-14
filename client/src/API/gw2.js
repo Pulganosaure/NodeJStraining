@@ -1,14 +1,20 @@
-const API = 'https://api.guildwars2.com/v2/characters'
-const token = 'Bearer 4F5E7E01-871B-BB4E-ACB7-42B2B05035C5DFC8B1F5-CD38-44A8-AEA1-A7AE46A2B03C'
+const accessToken = '4F5E7E01-871B-BB4E-ACB7-42B2B05035C5DFC8B1F5-CD38-44A8-AEA1-A7AE46A2B03C'
 
+const gw2 = {
+  async getData() {
+    try {
+      let response = await fetch(`https://api.guildwars2.com/v2/characters?access_token=${accessToken}`, {
+        method: 'GET',
+      })
+      if (response.ok) {
+        let jsonResponse = await response.json();''
+        return jsonResponse
+      }
+      throw new Error('Request failed!');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 
-export const getCharactersList = () =>
-  fetch(API, {
-    method: 'get',
-    headers: {
-      'Accept': 'text/html',
-      'Content-Type': 'text/html',
-      'Authorization': token,
-    },
-  }).then(res => res.json())
-  .then(data => data)
+export default gw2
