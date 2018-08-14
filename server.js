@@ -7,7 +7,7 @@ const profils = require('./routes/api/profils')
 const users = require('./routes/api/users')
 const archivements = require('./routes/api/archivements')
 const app = express();
-// var db = require('./mysql/db')
+const db = require('./mysql/db')
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
