@@ -20,37 +20,40 @@ class CharactersForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      details: {},
+      details: null,
     }
 
   }
-  async componentDidMount()
-  {
+  async componentDidMount() {
     const data = await gw2.getCharacterDetails(this.props.charName)
     this.setState({
       details: data,
     })
   }
-  render()
-  {
+
+  render() {
     const {details} = this.state
+    let characterDetails
+
+    details === null
+      ? characterDetails = (<Spinner/>)
+      : characterDetails = (
+        <div className="row border mb-1">
+          <div className="col-2">
+            <p>{details.profession}</p>
+          </div>
+          <div className="col-8 border-x">
+            <h4>{details.name}</h4>
+          </div>
+          <div className="col-2">
+            <h2>{details.level}</h2>
+          </div>
+        </div>
+      )
+
     return(
       <div>
-        {
-          (details)
-          ? <div className="row border mb-1">
-            <div className="col-2">
-              <p>{details.profession}</p>
-            </div>
-            <div className="col-8 border-x">
-              <h4>{details.name}</h4>
-            </div>
-            <div className="col-2">
-              <h2>{details.level}</h2>
-            </div>
-          </div>
-          :  <Spinner/>
-        }
+        {characterDetails}
       </div>
 
     )
