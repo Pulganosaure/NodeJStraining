@@ -1,5 +1,19 @@
 import React, {Fragment} from 'react'
 import gw2 from '../API/gw2.js'
+import loadcircle from '../assets/loading/loadcircle.gif'
+
+
+class Spinner extends React.Component {
+  render()
+  {
+    return <img
+      alt="Loading"
+      src={loadcircle}
+    />
+  }
+
+}
+
 
 
 class CharactersForm extends React.Component {
@@ -21,20 +35,27 @@ class CharactersForm extends React.Component {
   {
     const {details} = this.state
     return(
-      <div className="row border mb-1">
-        <div className="col-2">
-          <p>{details.profession}</p>
-        </div>
-        <div className="col-8 border-x">
-          <h4>{details.name}</h4>
-        </div>
-        <div className="col-2">
-          <h2>{details.level}</h2>
-        </div>
+      <div>
+        {
+          (details)
+          ? <div className="row border mb-1">
+            <div className="col-2">
+              <p>{details.profession}</p>
+            </div>
+            <div className="col-8 border-x">
+              <h4>{details.name}</h4>
+            </div>
+            <div className="col-2">
+              <h2>{details.level}</h2>
+            </div>
+          </div>
+          :  <Spinner/>
+        }
       </div>
+
     )
 
-}
+  }
 
 }
 
@@ -74,11 +95,11 @@ class ProfileCharacters extends React.Component {
           { characters.map(name =>
             <CharactersForm charName={name}/>
           )
-          }
-        </div>
-      </Fragment>
-    )
-  }
+        }
+      </div>
+    </Fragment>
+  )
+}
 }
 
 export default ProfileCharacters
