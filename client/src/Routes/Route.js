@@ -39,6 +39,10 @@ class RoutesList extends Component {
             component={PhotoGaleryHome}
           />
           <Route
+            exact path='/gallery/:id'
+            component={PhotoGaleryHome}
+          />
+          <Route
             exact path='/inscription'
             component={InscriptionForms}
           />
