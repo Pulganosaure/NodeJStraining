@@ -1,24 +1,28 @@
 const express = require('express');
+const app = express()
 const bodyParser = require('body-parser')
-
-const cors = require('cors');
+const router = express.Router()
+//BDD MYSQL
 const mysql = require('mysql')
+const db = require('./mysql/db')
+//API
 const profils = require('./routes/api/profils')
 const users = require('./routes/api/users')
 const archivements = require('./routes/api/archivements')
-const app = express();
-const db = require('./mysql/db')
+const gwinfos = require('./routes/api/gwinfos')
+const pictures = require('./routes/api/pictures')
 
-app.use(bodyParser.urlencoded({extended: false}))
+const cors = require('cors');
+
 app.use(bodyParser.json())
-
-
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors());
-const router = express.Router()
 
 app.use('/api/profils', profils)
 app.use('/api/archivements', archivements)
 app.use('/api/users', users)
+app.use('/api/gwinfos', gwinfos)
+app.use('/api/pictures', pictures)
 
 const port = process.env.PORT || 5000
 

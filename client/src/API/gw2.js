@@ -29,6 +29,21 @@ const gw2 = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  async getCurrentTitle(titleid) {
+    try {
+      let response = await fetch(`https://api.guildwars2.com/v2/titles?lang=fr&id=${titleid}`, {
+        method: 'GET',
+      })
+      if (response.ok) {
+        let jsonResponse = await response.json()
+        return jsonResponse
+      }
+      throw new Error('Request failed!')
+    } catch (error) {
+      return(error)
+    }
   }
 }
 

@@ -4,8 +4,9 @@ import ProfileArchivements from './archivements.js'
 import ProfileSecurity from './security.js'
 import ProfilEvents from './events.js'
 import ProfileCharacters from './characters.js'
+import UserDashboard from './dashboard.js'
 import '../Bootstrap/bootstrap.min.css'
-import * as profilsAPI from '../API/profils.js'
+
 
 class ProfileHome extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class ProfileHome extends React.Component {
 
   switchOnglet() {
     switch (this.state.onglet) {
+      case 'Account':
+      return <ProfileAccount/>
       case 'Security':
       return <ProfileSecurity/>
       case 'Characters':
@@ -28,17 +31,9 @@ class ProfileHome extends React.Component {
       case 'Events':
       return <ProfilEvents/>
       default:
-      return <ProfileAccount/>
+      return <UserDashboard/>
     }
   }
-
-  // componentDidMount() {
-  //   profilsAPI.getUserList()
-  //   .then(data =>
-  //     this.setState({
-  //       users: data,
-  //     }))
-  //   }
 
   render() {
     return (
@@ -50,10 +45,19 @@ class ProfileHome extends React.Component {
                 className="list-group-item list-group-item-action"
                 onClick={() => this.setState(
                   {
+                    onglet: "Dashboard"
+                  }
+                )}>
+                Dashboard
+              </button>
+              <button type="button"
+                className="list-group-item list-group-item-action"
+                onClick={() => this.setState(
+                  {
                     onglet: "Account"
                   }
                 )}>
-                Account
+                My Account
               </button>
               <button type="button"
                 className="list-group-item list-group-item-action"

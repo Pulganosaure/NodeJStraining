@@ -6,6 +6,7 @@ import InscriptionForms from './../Sessions/Inscription.js'
 import ExpendTo from '../BGSMonitoring/expansionto.js'
 import ProfileHome from '../profils/home.js'
 import EventHome from '../events/home.js'
+import PhotoGaleryHome from '../photogalery/home.js'
 
 
 class RoutesList extends Component {
@@ -32,6 +33,10 @@ class RoutesList extends Component {
           <Route
             exact path='/Events'
             component={EventHome}
+          />
+          <Route
+            exact path='/gallery'
+            component={PhotoGaleryHome}
           />
           <Route
             exact path='/inscription'

@@ -19,24 +19,11 @@ class Navbar extends React.Component {
             <li className="nav-item">
                 <NavLink
                   className='nav-link'
-                  exact to='/BGSMonitoring'>
+                  exact to='/a'>
                   BGSMonitoring
                 </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className='nav-link'
-                exact to='/expandto'>
-                Expansions
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className='nav-link'
-                exact to='/profil'>
-                Profil
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink
                 className='nav-link'
@@ -44,10 +31,23 @@ class Navbar extends React.Component {
                 Events
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className='nav-link'
+                exact to='/gallery'>
+                PhotoGalery
+              </NavLink>
+            </li>
           </ul>
 
-
           <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink
+                className='nav-link'
+                exact to='/profil'>
+                Profil
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink
                 className='nav-link'
