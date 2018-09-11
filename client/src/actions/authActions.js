@@ -1,34 +1,19 @@
 import axios from 'axios'
-import jwt_decode from 'jwt-decode'
+import { LOADING_DATA, FETCH_GW2_CHARACTERS } from './types'
 
-import setAuthToken from '../utils/setAuthToken'
-import { GET_ERRORS, SET_CURRENT_USER } from './types'
+export const getGw2Characters = () => async dispatch => {
+  dispatch(loading())
+  const accessToken = '4F5E7E01-871B-BB4E-ACB7-42B2B05035C5DFC8B1F5-CD38-44A8-AEA1-A7AE46A2B03C'
+  const res = await axios.get(`https://api.guildwars2.com/v2/characters?access_token=${accessToken}`)
 
-
-export const loginUser = userData => dispatch => {
-  axios
-    .post('/api/users/login', userData)
-    .then(res => {
-      // Save to LocalStorage
-      const { token } = res.data
-      localStorage.setItem('jwtToken', token)
-      // Set token to Auth header
-      setAuthToken(token)
-      // Decode token to get user userData
-      const decoded = jwt_decode(token)
-      dispatch(setCurrentUser(decoded))
-    })
-    .catch( err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      })
-    )
+  dispatch({
+    type: FETCH_GW2_CHARACTERS,
+    payload: res.data,
+  })
 }
 
-export const setCurrentUser = decoded => {
+export const loading = () => {
   return {
-    type: SET_CURRENT_USER,
-    payload: decoded,
+    type: LOADING_DATA,
   }
 }

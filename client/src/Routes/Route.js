@@ -7,7 +7,7 @@ import ExpendTo from '../BGSMonitoring/expansionto.js'
 import ProfileHome from '../profils/home.js'
 import EventHome from '../events/home.js'
 import PhotoGaleryHome from '../photogalery/home.js'
-
+import Characters from '../guildwars2/Characters.js'
 
 class RoutesList extends Component {
 
@@ -15,6 +15,10 @@ class RoutesList extends Component {
     return (
       <Fragment>
         <Fragment>
+          <Route
+            exact path='/gw2/characters'
+            component={Characters}
+          />
           <Route
             exact path='/BGSMonitoring'
             component={BGSData}
