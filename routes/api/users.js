@@ -21,50 +21,8 @@ router.get('/', (req, res) => {
         db.get().query("INSERT into `users_list` (username, password) values("+ req.username+", "+ req.password + ")")
       }
     })
-
   })
 })
-
-router.post('/register', (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body)
-  //Check Validation
-  if (!isValid) {
-    return res.status(400).json(errors)
-  }
-
-  User.findOne({ email: req.body.email })
-  .then(user => {
-    if (user) {
-      errors.email = 'Email already exists'
-      return res.status(400).json(errors)
-    } else {
-      const avatar = gravatar.url(req.body.email, {
-        s: '200', // Size
-        r: 'pg',  // Rating
-        d: 'mm',  // Default
-      })
-
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        avatar,
-        password: req.body.password
-      })
-
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err
-          newUser.password = hash
-          newUser
-          .save()
-          .then(user => res.json(user))
-          .catch(err => console.log(err))
-        })
-      })
-    }
-  })
-})
-
 
 router.post('/passedit', (req, res) => {
 
@@ -73,19 +31,22 @@ router.post('/passedit', (req, res) => {
     //requete mysql
     var id = db.get().query('SELECT id FROM `users_list` WHERE password LIKE "'+ req.password + '"', function(err, lines) {
       db.query('INSERT INTO users_list (password) VALUES (password) WHERE id LIKE "'+id+'"')
-
     })
   })
 })
 
-router.post('/connect', (req, res) => {
-
-
+router.get('/login', (req, res) => {
   db.connect(db.MODE_PRODUCTION, function() {
     //requete mysql
-    db.get().query('SELECT id FROM `users_list` WHERE password LIKE "'+ req.password + '"', function(err, lines) {
-      db.query('SELECT INTO users_list id WHERE username LIKE "'+ req.username+'" AND password LIKE "'+ req.password+ '"')
-
+    db.get().query('SELECT * FROM users_list WHERE username LIKE "'+ "pulga n"+'" LIMIT 1', function(err, result) {
+      (result === "") ?
+      res = {
+        id: result[0].id,
+        name: result[0].username,
+        gwAPIKey: result[0].apiKey,
+        permissions: result[0].permissions,
+      }
+      : null
     })
   })
 })

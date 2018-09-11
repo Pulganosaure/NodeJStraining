@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
-class ConnexionForm extends Component {
+class Connect extends Component {
 
   render() {
     return (
@@ -21,4 +21,4 @@ class ConnexionForm extends Component {
     )
   }
 }
-export default ConnexionForm
+export default Connect

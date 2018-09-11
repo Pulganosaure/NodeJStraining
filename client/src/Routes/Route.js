@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import BGSData from './../BGSMonitoring/bgsmonitoring.js'
-import ConnexionForms from './../Sessions/Connexion.js'
+import Login from './../auth/login.js'
 import InscriptionForms from './../Sessions/Inscription.js'
 import ExpendTo from '../BGSMonitoring/expansionto.js'
 import ProfileHome from '../profils/home.js'
@@ -48,7 +48,7 @@ class RoutesList extends Component {
           />
           <Route
             exact path='/connexion'
-            component={ConnexionForms}
+            component={Login}
           />
 
         </Fragment>

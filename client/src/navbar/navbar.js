@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
-
+import NotifMenu from '../notifications/home.js'
 
 class Navbar extends React.Component {
   render() {
     return (
       <div>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark text-light">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark text-light ">
         <div className="container">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -38,9 +38,13 @@ class Navbar extends React.Component {
                 PhotoGalery
               </NavLink>
             </li>
+
           </ul>
 
           <ul className="navbar-nav">
+            <li className="nav-item">
+              <NotifMenu/>
+            </li>
             <li className="nav-item">
               <NavLink
                 className='nav-link'
