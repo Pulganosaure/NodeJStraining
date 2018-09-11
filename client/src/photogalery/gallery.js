@@ -59,14 +59,11 @@ class PhotoCard extends React.Component {
       this.setState({
         datas: data,
       })
-      console.log("reloaded : " + this.props.page)
-      console.log(data)
     }
 
     render() {
       return (
         <div className="row justify-content-center mt-5">
-          <h1>{this.props.page}</h1>
           {this.state.datas.map((picture, key) =>
             <div  key={key} className="mx-2 mb-4">
               <PhotoCard data={picture}/>

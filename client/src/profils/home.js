@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import ProfileAccount from './account.js'
 import ProfileArchivements from './archivements.js'
 import ProfileSecurity from './security.js'
@@ -6,7 +7,6 @@ import ProfilEvents from './events.js'
 import ProfileCharacters from './characters.js'
 import UserDashboard from './dashboard.js'
 import '../Bootstrap/bootstrap.min.css'
-
 
 class ProfileHome extends React.Component {
   constructor(props) {
@@ -97,6 +97,9 @@ class ProfileHome extends React.Component {
               </button>
             </ul>
           </div>
+          <div>
+             {this.props.auth.isAuthenticated
+              }</div>
           <div className="col-10 pr-0">
             {this.switchOnglet()}
           </div>
@@ -106,4 +109,9 @@ class ProfileHome extends React.Component {
     }
   }
 
-  export default ProfileHome
+  const mapStateToProps = (state) => ({
+    profile: state.profile,
+    auth: state.auth,
+  })
+
+  export default connect(mapStateToProps)(ProfileHome)
