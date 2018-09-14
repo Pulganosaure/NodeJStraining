@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './navbar/navbar.js'
+import Navbar from './components/navbar/navbar.js'
 import './Bootstrap/bootstrap.min.css'
 import RoutesList from './Routes/Route'
 

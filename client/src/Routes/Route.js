@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
-import BGSData from './../BGSMonitoring/bgsmonitoring.js'
-import Login from './../auth/login.js'
-import InscriptionForms from './../Sessions/Inscription.js'
-import ExpendTo from '../BGSMonitoring/expansionto.js'
-import ProfileHome from '../profils/home.js'
-import EventHome from '../events/home.js'
-import PhotoGaleryHome from '../photogalery/home.js'
-import Characters from '../guildwars2/Characters.js'
+import BGSData from '../components/BGSMonitoring/bgsmonitoring.js'
+import Login from '../components/auth/login.js'
+import Register from '../components/auth/register.js'
+import ExpendTo from '../components/BGSMonitoring/expansionto.js'
+import ProfileHome from '../components/profils/home.js'
+import EventHome from '../components/events/home.js'
+import PhotoGaleryHome from '../components/photogalery/home.js'
+import Characters from '../components/guildwars2/Characters.js'
 
 class RoutesList extends Component {
 
@@ -47,14 +47,13 @@ class RoutesList extends Component {
             component={PhotoGaleryHome}
           />
           <Route
-            exact path='/inscription'
-            component={InscriptionForms}
+            exact path='/Register'
+            component={Register}
           />
           <Route
-            exact path='/connexion'
+            exact path='/Login'
             component={Login}
           />
-
         </Fragment>
       </Fragment>
     )

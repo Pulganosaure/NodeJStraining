@@ -1,14 +1,39 @@
 import axios from 'axios'
-import { LOADING_DATA, FETCH_GW2_CHARACTERS } from './types'
+import jwt_decode from 'jwt-decode'
 
-export const getGw2Characters = () => async dispatch => {
-  dispatch(loading())
-  const accessToken = '4F5E7E01-871B-BB4E-ACB7-42B2B05035C5DFC8B1F5-CD38-44A8-AEA1-A7AE46A2B03C'
-  const res = await axios.get(`https://api.guildwars2.com/v2/characters?access_token=${accessToken}`)
+import setAuthToken from '../utils/setAuthToken'
+import { LOADING_DATA, CONNECT_USER } from './types'
 
+export const connectuser = (userData) => async dispatch => {
+  //let userData = {username: "pulgan", password: ""}
+  const data = await axios.post('/api/users/login', userData)
+  const res = { isAuthenticated: true,
+                user: data.data
+              }
+
+  const { token } = res
+  localStorage.setItem('jwtToken', token)
+  // Set token to Auth header
+  //setAuthToken(token)
+  // Decode token to get user userData
+  //const decoded = jwt_decode(token)
   dispatch({
-    type: FETCH_GW2_CHARACTERS,
-    payload: res.data,
+    type: CONNECT_USER,
+    payload: res,
+  })
+}
+
+
+export const registUser = (userData) => async dispatch => {
+
+  const data = await axios.post('/api/users/register', userData)
+  const res = { isAuthenticated: true,
+                user: data.data
+              }
+  console.log(res)
+  dispatch({
+    type: CONNECT_USER,
+    payload: res,
   })
 }
 
