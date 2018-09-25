@@ -11,7 +11,7 @@ class RessourcesHome extends React.Component {
       ],
       permissions: {RESSOURCE_MANAGER: false, RESSOURCE_CREATOR: false},
     }
-    this.updateData = updateData.bind(this)
+    //this.updateData = updateData.bind(this)
 
   }
 
