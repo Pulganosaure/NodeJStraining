@@ -2,7 +2,8 @@ import React, {Fragment} from 'react'
 import gw2 from '../../API/gw2.js'
 import * as gw2infos from '../../API/gw2infos.js'
 import loadcircle from '../../assets/loading/loadcircle.gif'
-
+import { connect } from 'react-redux'
+import { getGw2Characters } from '../../actions/guildwars2Actions'
 
 class Spinner extends React.Component {
   render()
@@ -15,6 +16,12 @@ class Spinner extends React.Component {
   }
 
 }
+
+
+const mapStateToProps = (state) => ({
+  gw2: state.gw2,
+})
+
 
 class ClassChar extends React.Component {
   constructor(props) {
@@ -47,8 +54,6 @@ class TitleChar extends React.Component {
   }
   async componentDidMount() {
     const data = await gw2.getCurrentTitle(this.props.id)
-    console.log(data)
-    console.log(this.props.id)
     this.setState({
       name: data.name
     })
@@ -91,7 +96,6 @@ class CharactersForm extends React.Component {
             <div className="row">
               <h4>{details.name}</h4>
             </div>
-            {console.log(details)}
             <div>
               <TitleChar id={details.title}/>
             </div>
@@ -112,26 +116,18 @@ class CharactersForm extends React.Component {
 
 
 class ProfileCharacters extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      characters: [],
-    }
-
-  }
 
   async componentDidMount() {
-    const data = await gw2.getCharacterList(this.props.apidKey)
-    this.setState({
-      characters: data,
-    })
+    if(this.props.gw2.characters.length === 0)
+      this.props.getGw2Characters()
   }
 
   render() {
-    const {characters} = this.state
+    const { characters } = this.props.gw2
+
     return (
       <Fragment>
-        <div className="row justify-content-md-center mb-3">
+        <div className="row mt-5 justify-content-md-center mb-3">
           <h1 className="">Characters :</h1>
         </div>
           { (characters) ?characters.map((name, key) =>
@@ -144,4 +140,4 @@ class ProfileCharacters extends React.Component {
 }
 }
 
-export default ProfileCharacters
+export default connect(mapStateToProps, { getGw2Characters })(ProfileCharacters)

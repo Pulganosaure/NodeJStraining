@@ -6,7 +6,7 @@ const router = express.Router()
 
 // @route  GET api/pictures/
 // @desc   return the number of picture stocked in the database
-// @access Private
+// @access Public
 router.get('/', (req, res) => {
   var results = []
   //inialitation de la connexion
@@ -17,7 +17,9 @@ router.get('/', (req, res) => {
       })
   })
 })
-
+// @route  GET api/pictures/
+// @desc   return 20 picture of the page
+// @access Public
 router.get('/:page', (req, res) => {
   var results = []
   //inialitation de la connexion
@@ -35,7 +37,7 @@ router.get('/:page', (req, res) => {
             description: picture.description,
             event: picture.eventid,
             description: picture.description,
-            owner: {id: picture.ownerid, name: "getownername(picture.ownerid)"},
+            owner: {id: picture.ownerid, name: getownername(picture.ownerid)},
             url: picture.url,
             date: picture.insertdate,
           }
@@ -50,7 +52,7 @@ router.get('/:page', (req, res) => {
   }
 })
 
-
+//return the username from his id
 function getownername(id)
 {
   let name = ""
@@ -61,5 +63,22 @@ function getownername(id)
     })
   return name
 }
+
+
+router.post('/pictures/commentary/post', (req, res) => {
+  db.connect(db.MODE_PRODUCTION, function() {
+    db.get().query('INSERT INTO picturecommentarys ("user_id, message, pictureId") value("'+ req.body.id+'", "'+ req.body.message+'", "' + req.body.pictureId + '")')
+  })
+})
+
+router.post('/pictures/commentary/delete', (req, res) => {
+  db.connect(db.MODE_PRODUCTION, function() {
+  })
+})
+
+router.post('/pictures/commentary/edit', (req, res) => {
+  db.connect(db.MODE_PRODUCTION, function() {
+  })
+})
 
 module.exports = router

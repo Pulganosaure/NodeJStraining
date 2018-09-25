@@ -1,0 +1,49 @@
+.no-container
+{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left:0;
+}
+body
+{
+  height: 100%;
+}
+
+.background
+{
+}
+
+.description
+{
+  width: 100%;
+  height: 100%;
+  background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-HD-Guild-Wars-2-Photos-PIC-WPE004928.jpg");
+  background-repeat: no-repeat;
+}
+.description .contain
+{
+        max-width: 1300px;
+        margin: auto;
+        padding-left: 15rem;
+        padding-right: 15rem;
+}
+ .details .contain
+ {
+       max-width: 1300px;
+       margin: auto;
+       padding-left: 10rem;
+       padding-right: 10rem;
+ }
+ .details .contain h1, .details .contain p
+ {
+   padding-left: 50%;
+ }
+
+.details
+{
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("https://www.gamewallpapers.com/wallpapers_slechte_compressie/wallpaper_guild_wars_2_path_of_fire_01_1920x1080.jpg");
+}

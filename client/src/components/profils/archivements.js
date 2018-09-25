@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import * as archivementsAPI from '../../API/archivements'
 
 
@@ -40,8 +40,8 @@ class ProfileArchivements extends React.Component {
   render()
   {
     return (
-      <div>
-        <div className="row justify-content-md-center">
+      <Fragment>
+        <div className="row mt-5 justify-content-md-center">
           <h1 className="">Archivements :</h1>
         </div>
         <div className="row mt-4 justify-content-md-center">
@@ -54,7 +54,7 @@ class ProfileArchivements extends React.Component {
               )
             }
           </div>
-        </div>
+      </Fragment>
       )}
     }
     export default ProfileArchivements

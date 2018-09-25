@@ -1,0 +1,56 @@
+.PhotoDisplayer
+{
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 5% 2% 0% 2%;
+  height: 100%;
+  z-index: 10;
+  background-color: #000000db;
+}
+
+.chatbox
+{
+  padding: 0;
+  width: 100%;
+  background-color: white;
+}
+.flexline
+{
+  display: flex;
+}
+
+.descbox
+{
+  height: 30%;
+  padding: 5%;
+}
+
+.closeicon
+{
+  position: absolute;
+  width: 10%;
+  left: -10%;
+}
+.coms
+{
+  height: 62.5%;
+}
+.iconslist
+{
+  height: 2.5%;
+  width: 100%;
+  display: inline-flex;
+}
+.iconslist .icondiv .icon
+{
+  height: 100%;
+  padding: 0 5% 0 0;
+}
+
+.iconslist .icondiv
+{
+  height: 100%;
+  text-align: center;
+  width: 50%;
+}

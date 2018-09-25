@@ -1,0 +1,34 @@
+.RessourceLine
+{
+    width: 100%;
+
+}
+
+table
+{
+  width: 100%
+}
+.entry
+{
+  width: 100%;
+  display: flex;
+  border: 0.5px solid black;
+  border-radius: 2px;
+  margin: 5px 0 0 0;
+  padding: 3px;
+  background-color: #cecdd0;
+}
+
+.icon
+{
+  width: 20%;
+}
+.title
+{
+  width: 50%;
+
+}
+.lastactivity
+{
+  width: 30%
+}

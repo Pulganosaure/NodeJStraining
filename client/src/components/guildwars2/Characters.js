@@ -10,7 +10,7 @@ class Characters extends React.Component {
     const { characters } = this.props.gw2
     return (
       <div>
-        {characters[0]}
+        {characters.map(char => <p>{char}</p>)}
       </div>
     )
   }

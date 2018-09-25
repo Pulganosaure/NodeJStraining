@@ -44,7 +44,22 @@ const gw2 = {
     } catch (error) {
       return(error)
     }
-  }
+  },
+
+  async getRaidBossDown(apiKey) {
+    try {
+      let response = await fetch(`https://api.guildwars2.com/v2/account/raids?access_token=${apiKey}`, {
+        method: 'GET',
+      })
+      if (response.ok) {
+        let jsonResponse = await response.json()
+        return jsonResponse
+      }
+      throw new Error('Request failed!')
+    } catch (error) {
+      console.log(error)
+    }
+  },
 }
 
 export default gw2

@@ -31,7 +31,7 @@ class NotifMenu extends React.Component {
     return (
 
         <Fragment>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bell_font_awesome.svg/768px-Bell_font_awesome.svg.png" alt="N" style={{width: "2%"}}
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9tbF6gHa0Cf-BCschJ0fyIF-Lgly-013x9-iZJmn7QWOaZYcq" alt="N" style={{height: "1rem"}}
             onClick={() => this.setState({display: !this.state.display })}
             >
 

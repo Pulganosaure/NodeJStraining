@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { connect } from 'react-redux'
 import ProfileAccount from './account.js'
 import ProfileArchivements from './archivements.js'
@@ -6,7 +6,6 @@ import ProfileSecurity from './security.js'
 import ProfilEvents from './events.js'
 import ProfileCharacters from './characters.js'
 import UserDashboard from './dashboard.js'
-import '../../Bootstrap/bootstrap.min.css'
 
 class ProfileHome extends React.Component {
   constructor(props) {
@@ -20,14 +19,16 @@ class ProfileHome extends React.Component {
 
   componentDidMount()
   {
-    if(!this.props.auth.isAuthenticated)
+    if(!this.props.auth.isAuthenticated) {
       this.props.history.push("/login")
+      console.log(this.props.auth.stats)
+    }
   }
 
   switchOnglet() {
     switch (this.state.onglet) {
       case 'Account':
-      return <ProfileAccount user={this.props.auth.user}/>
+      return <ProfileAccount user={this.props.auth.user} />
       case 'Security':
       return <ProfileSecurity/>
       case 'Characters':
@@ -37,13 +38,13 @@ class ProfileHome extends React.Component {
       case 'Events':
       return <ProfilEvents/>
       default:
-      return <UserDashboard user={this.props.auth.user}/>
+      return <UserDashboard user={this.props.auth.user} stats={this.props.auth.stats}/>
     }
   }
 
   render() {
     return (
-      <div className="mt-5">
+      <Fragment>
         <div className="row">
           <div className="col-2 pl-0">
             <ul className="list-group mt-5 pt-4">
@@ -107,7 +108,7 @@ class ProfileHome extends React.Component {
             {this.switchOnglet()}
           </div>
         </div>
-      </div>
+      </Fragment>
       )
     }
   }

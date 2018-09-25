@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { registUser } from '../../actions/authActions'
+
 const passwordminlength = 5
 
 
@@ -12,9 +14,9 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
-      errors: {},
     }
     this.handleQueryInput = this.handleQueryInput.bind(this)
+    this.HandleSubmit = this.HandleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -28,22 +30,26 @@ class Register extends Component {
     [e.target.name]: e.target.value
   })
 }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({ errors: this.props.errors });
-    }
+HandleSubmit(e)
+{
+  e.preventDefault()
+  console.log("hello")
+  if(this.state.password.length > 5 && this.state.username.length > 3 && this.state.password === this.state.password2 && this.state.email !== "")
+  {
+    console.log("check down")
+    this.props.registUser({username:this.state.username, password:this.state.password, email:this.state.email})
   }
 
-  render() {
-    const { name, email, password, password2, errors } = this.state
+}
 
+
+  render() {
     return (
       <Fragment>
-        <form onSubmit="" className="mt-5 my-4">
+        <form onSubmit={this.HandleSubmit} className="mt-5">
           <div className="form-group">
             <label htmlFor="username_input">nom d'utilisateur :</label>
-            <input type="text" name="name" title="name" onChange={this.handleQueryInput} className="form-control"></input>
+            <input type="text" name="username" title="name" onChange={this.handleQueryInput} className="form-control"></input>
           </div>
           <div className="form-group">
             <label htmlFor="username_input">E-Mail :</label>
@@ -83,4 +89,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps)(Register)
+export default connect(mapStateToProps, { registUser })(Register)

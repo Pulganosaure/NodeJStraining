@@ -7,8 +7,7 @@ fetch(`http://localhost:5000/api/pictures/${page}`, {
 })
 .then(res => res.json())
 .then(data => data)
-.then(console.log(`http://localhost:5000/api/pictures/${page}`)
-)
+
 
 
 

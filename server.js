@@ -11,6 +11,7 @@ const users = require('./routes/api/users')
 const archivements = require('./routes/api/archivements')
 const gwinfos = require('./routes/api/gwinfos')
 const pictures = require('./routes/api/pictures')
+const news = require('./routes/api/news')
 
 const cors = require('cors');
 
@@ -23,6 +24,7 @@ app.use('/api/archivements', archivements)
 app.use('/api/users', users)
 app.use('/api/gwinfos', gwinfos)
 app.use('/api/pictures', pictures)
+app.use('/api/news', news)
 
 const port = process.env.PORT || 5000
 

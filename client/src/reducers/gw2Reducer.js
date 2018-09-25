@@ -1,6 +1,6 @@
 import { FETCH_GW2_CHARACTERS, LOADING_DATA } from '../actions/types'
 const initialState = {
-  characters: {},
+  characters: [],
   loading: false,
 }
 

@@ -21,20 +21,28 @@ class Connect extends Component {
   }
 
     componentDidMount() {
-      console.log(this.props.auth.isAuthenticated)
       if(this.props.auth.isAuthenticated)
         this.props.history.push("/profil")
     }
+    componentDidUpdate(prevProps) {
+      if (this.props.auth.isAuthenticated) {
+        this.props.history.push('/profil');
+      }
 
-    connect()
+    }
+    connect(e)
     {
+      e.preventDefault()
       if(this.state.password.length > 5 && this.state.username !== "")
+      {
         this.props.connectuser({username:this.state.username, password:this.state.password})
+      }
+
     }
   render() {
     return (
       <Fragment>
-      <form className="mt-5 my-4">
+      <form onSubmit={this.connect} className=" mt-5 my-4">
         <div className="form-group">
           <label htmlFor="username_input">nom d'utilisateur : </label>
           <input type="text" name="username" id="username_input" onChange={this.handleQueryInput} className="form-control"></input>
@@ -43,9 +51,9 @@ class Connect extends Component {
           <label htmlFor="password">Mot de passe :</label>
           <input type="password" name="password" id="password" onChange={this.handleQueryInput} className="form-control"></input>
         </div>
-      </form>
-        <button onClick={() => this.connect()} className="btn btn-primary">Connexion</button>
+        <button  className="btn btn-primary">Connexion</button>
         <a className="text-primary" href="">mot de passe oublié?</a>
+      </form>
     </Fragment>
     )
   }

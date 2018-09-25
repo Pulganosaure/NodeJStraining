@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import setAuthToken from '../utils/setAuthToken'
 import { LOADING_DATA, CONNECT_USER } from './types'
 
-export const connectuser = (userData) => async dispatch => {
+export const postPictureCommentary = (userData) => async dispatch => {
   axios.post('/api/users/login', userData)
   .then(res => {
     // Save to LocalStorage
@@ -18,14 +18,21 @@ export const connectuser = (userData) => async dispatch => {
     const value = {isAuthenticated: true, user: decoded.profil, stats: decoded.stats}
     dispatch(setCurrentUser(value))
   })
-  .catch( err => {
-  }
+  .catch( err => {}
   )
 }
 
 
 export const registUser = (userData) => async dispatch => {
-  await axios.post('/api/users/register', userData).then()
+
+  const data = await axios.post('/api/users/register', userData)
+  const res = { isAuthenticated: true,
+                user: data.data
+              }
+  dispatch({
+    type: CONNECT_USER,
+    payload: res,
+  })
 }
 
 export const loading = () => {
