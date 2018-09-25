@@ -11,7 +11,17 @@ class RessourcesHome extends React.Component {
       ],
       permissions: {RESSOURCE_MANAGER: false, RESSOURCE_CREATOR: false},
     }
+    this.updateData = updateData.bind(this)
+
   }
+
+  componentDidMount()
+  {
+    this.setState({
+      pageId: 0,
+    })
+  }
+
   render()
   {
     return (
