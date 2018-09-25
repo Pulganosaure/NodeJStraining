@@ -1,25 +1,44 @@
-const express = require('express');
-const app = express()
+const express = require('express')
+const mongoose = require('mongoose')
+const passport = require('passport')
+const cors = require('cors')
 const bodyParser = require('body-parser')
-const router = express.Router()
-//BDD MYSQL
-const mysql = require('mysql')
-const db = require('./mysql/db')
-//API
-const profils = require('./routes/api/profils')
+
+// ROUTES IMPORT
 const users = require('./routes/api/users')
 const archivements = require('./routes/api/archivements')
 const gwinfos = require('./routes/api/gwinfos')
 const pictures = require('./routes/api/pictures')
 const news = require('./routes/api/news')
 
-const cors = require('cors');
+// STRATEGY
+require('./services/passport')(passport)
 
+// EXPRESS
+const app = express()
+
+// BDD MYSQL
+// const mysql = require('mysql')
+// const db = require('./mysql/db')
+
+// MONGODB config
+const db = require('./config/keys').keys
+
+// CONNECT to Mongodb
+mongoose
+  .connect(db.mongo.url(), db.mongo.options)
+  .then(() => console.log('Mongodb Connected'))
+  .catch(err => console.error(err))
+
+// MIDDLEWARE
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(cors());
+app.use(cors())
 
-app.use('/api/profils', profils)
+// PASSPORT
+app.use(passport.initialize())
+
+// ROUTES API
 app.use('/api/archivements', archivements)
 app.use('/api/users', users)
 app.use('/api/gwinfos', gwinfos)
@@ -27,5 +46,4 @@ app.use('/api/pictures', pictures)
 app.use('/api/news', news)
 
 const port = process.env.PORT || 5000
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
