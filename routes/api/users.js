@@ -1,7 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 const User = require('../../models/User')
 const keys = require('../../config/keys').keys
@@ -35,15 +35,16 @@ router.post('/register', async (req, res) => {
 // @desc   Login as user and generate token
 // @access Public
 router.post('/login', async (req, res) => {
+  console.log(req.body)
   const email = req.body.email
   const password = req.body.password
 
   const user = await User.findOne({ email })
-  const match = await bcrypt.compareSync(password, user.passwordHash)
 
   if (!user) {
     res.status(400).json('User not found')
   }
+  const match = await bcrypt.compareSync(password, user.passwordHash)
   if (match) {
     const payload = {
       id: user.id,

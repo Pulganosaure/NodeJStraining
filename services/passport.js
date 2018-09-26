@@ -20,4 +20,14 @@ module.exports = passport => {
         .catch(err => console.log(err))
     })
   )
+  passport.use(
+    new JwtStrategy(opts, (jwt_payload, done) => {
+      Profil.findById(jwt_payload.id)
+        .then(profil => {
+          if (profil) { return done(null, profil) }
+          return done(null, false)
+        })
+        .catch(err => console.log(err))
+    })
+  )
 }

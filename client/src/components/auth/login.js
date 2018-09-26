@@ -7,7 +7,7 @@ class Connect extends Component {
     super(props)
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
     }
     this.handleQueryInput = this.handleQueryInput.bind(this)
@@ -35,7 +35,7 @@ class Connect extends Component {
       e.preventDefault()
       if(this.state.password.length > 5 && this.state.username !== "")
       {
-        this.props.connectuser({username:this.state.username, password:this.state.password})
+        this.props.connectuser({email:this.state.email, password:this.state.password})
       }
 
     }
@@ -45,7 +45,7 @@ class Connect extends Component {
       <form onSubmit={this.connect} className=" mt-5 my-4">
         <div className="form-group">
           <label htmlFor="username_input">nom d'utilisateur : </label>
-          <input type="text" name="username" id="username_input" onChange={this.handleQueryInput} className="form-control"></input>
+          <input type="email" name="email" id="username_input" onChange={this.handleQueryInput} className="form-control"></input>
         </div>
         <div className="form-group">
           <label htmlFor="password">Mot de passe :</label>
