@@ -6,23 +6,25 @@ import { LOADING_DATA, CONNECT_USER } from './types'
 
 export const connectuser = (userData) => async dispatch => {
   console.log(userData)
-  axios.post('/api/users/login', userData)
-  .then(res => {
-    console.log(res)
-    // Save to LocalStorage
+  try {
+    const res = await axios.post('/api/users/login', userData)
     const { token } = res.data
     localStorage.setItem('jwtToken', token)
-    // Set token to Auth header
     setAuthToken(token)
     // Decode token to get user userData
     const decoded = jwt_decode(token)
-    //console.log(decoded)
-    const value = {isAuthenticated: true, user: decoded}
+
+    const profil = await axios.get('/api/profils/')
+    console.log(JSON.stringify(profil))
+    const value = {
+      isAuthenticated: true,
+      user: decoded,
+      stats: profil.data
+    }
     dispatch(setCurrentUser(value))
-  })
-  .catch( err => {
+  } catch (err) {
+    err => console.log("error: " +err)
   }
-  )
 }
 
 

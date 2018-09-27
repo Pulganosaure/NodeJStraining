@@ -12,37 +12,19 @@ const router = express.Router()
 // @desc   get user Profil
 // @access Private
 router.get('/', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  const profildata = await Profil.findOne({id: req.body.id})
+  const profildata = await Profil.findOne({userId: req.user.id})
+  console.log(profildata)
   if(!profildata) {
     res.status(403).json('profil not found')
   }
   else {
     const payload = {
-      Informations: profil.Informations,
-      Permissions: profil.archivementPoints,
-      Statistiques: profil.Statistiques,
+      Informations: profildata.Informations,
+      Permissions: profildata.Permissions,
+      Statistiques: profildata.Statistiques,
     }
     res.status(200).json(payload)
   }
 })
-
-router.get('/create', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  const profildata = await Profil.findOne({id: req.body.id})
-  try {
-    const user = await newUser.save()
-    res.json(user)
-  } catch (err) {
-    res.status(400).send(err)
-  }
-  const payload = {
-    Informations: profil.Informations,
-    Permissions: profil.archivementPoints,
-    Statistiques: profil.Statistiques,
-    }
-  res.status(200).json(payload)
-})
-
-
-
 
 module.exports = router

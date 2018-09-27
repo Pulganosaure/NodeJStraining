@@ -9,30 +9,25 @@ const ProfilSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
   },
+  userId: {
+    type: String,
+  },
   Informations: {
-    type: {
-      gw2ApiKey: String,
-      archivementPoints: Number,
-    },
+    gw2ApiKey: String,
+    archivementPoints: Number,
   },
   Permissions: {
-    type: {
-      event_manager: Boolean,
-      event_creator: Boolean,
-      user_manager: Boolean,
-      ressources_manager: Boolean,
-      ressources_creator: Boolean,
-      event_manager: Boolean,
-      event_creator: Boolean,
-    },
+    event_manager: Boolean,
+    event_creator: Boolean,
+    user_manager: Boolean,
+    ressources_manager: Boolean,
+    ressources_creator: Boolean,
   },
   Statistiques: {
-    type: {
-      eventCreated: Number,
-      eventParticipated: Number,
-      picturePosted: Number,
-      messagePosted: Number,
-      },
+    eventCreated: Number,
+    eventParticipated: Number,
+    picturePosted: Number,
+    messagePosted: Number,
   },
 })
 

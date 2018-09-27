@@ -32,7 +32,7 @@ class ProfileHome extends React.Component {
       case 'Security':
       return <ProfileSecurity/>
       case 'Characters':
-      return <ProfileCharacters apiKey={this.props.auth.user.gwAPIKey}/>
+      return <ProfileCharacters apiKey={this.props.auth.stats.Informations.gw2ApiKey}/>
       case 'Archivements':
       return <ProfileArchivements/>
       case 'Events':
