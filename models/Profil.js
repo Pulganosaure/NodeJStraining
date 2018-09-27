@@ -5,6 +5,10 @@ const Schema = mongoose.Schema
 
 // Create UserSchema
 const ProfilSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'users',
+  },
   Informations: {
     type: {
       gw2ApiKey: String,

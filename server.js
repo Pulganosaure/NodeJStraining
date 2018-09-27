@@ -41,7 +41,7 @@ app.use('/api/users', users)
 //app.use('/api/gwinfos', gwinfos)
 //app.use('/api/pictures', pictures)
 //app.use('/api/news', news)
-app.use('/api/profil', profil)
+app.use('/api/profils', profil)
 
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Listening on port ${port}`));
