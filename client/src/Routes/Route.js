@@ -7,7 +7,6 @@ import ExpendTo from '../components/BGSMonitoring/expansionto.js'
 import ProfileHome from '../components/profils/home.js'
 import EventHome from '../components/events/home.js'
 import PhotoGaleryHome from '../components/photogalery/home.js'
-import Characters from '../components/guildwars2/Characters.js'
 import MainPage from '../components/homepage/home.js'
 import RessourcesHome from '../components/ressources/home.js'
 
@@ -19,10 +18,6 @@ class RoutesList extends Component {
           <Route
             exact path='/'
             component={MainPage}
-          />
-          <Route
-            exact path='/gw2/characters'
-            component={Characters}
           />
           <Route
             exact path='/BGSMonitoring'

@@ -5,7 +5,6 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import rooReducer from './reducers'
@@ -22,5 +21,4 @@ ReactDOM.render(
     </Router>
   </Provider>,
   document.getElementById('root')
-);
-registerServiceWorker();
+)

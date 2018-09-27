@@ -23,7 +23,7 @@ export const connectuser = (userData) => async dispatch => {
     }
     dispatch(setCurrentUser(value))
   } catch (err) {
-    err => console.log("error: " +err)
+    console.log("error: " + err)
   }
 }
 

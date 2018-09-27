@@ -1,5 +1,4 @@
-import React, {Fragment} from 'react'
-import gw2 from '../../../API/gw2.js'
+import React from 'react'
 import loadcircle from '../../../assets/loading/loadcircle.gif'
 import TitleChar from './titlecharacter'
 import ClassChar from './classcharacter'
@@ -13,7 +12,6 @@ class Spinner extends React.Component {
       style={{height: "50px"}}
     />
   }
-
 }
 
 class CharactersForm extends React.Component {

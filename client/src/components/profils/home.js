@@ -6,6 +6,7 @@ import ProfileSecurity from './security.js'
 import ProfilEvents from './events.js'
 import ProfileCharacters from './characters.js'
 import UserDashboard from './dashboard.js'
+import { getGw2Characters } from '../../actions/guildwars2Actions'
 
 class ProfileHome extends React.Component {
   constructor(props) {
@@ -17,12 +18,12 @@ class ProfileHome extends React.Component {
     this.switchOnglet = this.switchOnglet.bind(this)
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
     if(!this.props.auth.isAuthenticated) {
       this.props.history.push("/login")
       console.log(this.props.auth.stats)
     }
+    this.props.getGw2Characters()
   }
 
   switchOnglet() {
@@ -32,7 +33,7 @@ class ProfileHome extends React.Component {
       case 'Security':
       return <ProfileSecurity/>
       case 'Characters':
-      return <ProfileCharacters apiKey={this.props.auth.stats.Informations.gw2ApiKey}/>
+      return <ProfileCharacters gw2={this.props.getGw2Characters}/>
       case 'Archivements':
       return <ProfileArchivements/>
       case 'Events':
@@ -116,6 +117,7 @@ class ProfileHome extends React.Component {
   const mapStateToProps = (state) => ({
     profile: state.profile,
     auth: state.auth,
+    gw2: state.gw2,
   })
 
-  export default connect(mapStateToProps)(ProfileHome)
+  export default connect(mapStateToProps, { getGw2Characters })(ProfileHome)
