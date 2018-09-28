@@ -9,8 +9,9 @@ const users = require('./routes/api/users')
 const profil = require('./routes/api/profil')
 //const archivements = require('./routes/api/archivements')
 //const gwinfos = require('./routes/api/gwinfos')
-//const pictures = require('./routes/api/pictures')
-//const news = require('./routes/api/news')
+const pictures = require('./routes/api/pictures')
+const picturecommentary = require('./routes/api/picturecommentary')
+const news = require('./routes/api/news')
 
 // STRATEGY
 require('./services/passport')(passport)
@@ -39,8 +40,9 @@ app.use(passport.initialize())
 //app.use('/api/archivements', archivements)
 app.use('/api/users', users)
 //app.use('/api/gwinfos', gwinfos)
-//app.use('/api/pictures', pictures)
-//app.use('/api/news', news)
+app.use('/api/pictures', pictures)
+app.use('/api/picturecommetary', picturecommentary)
+app.use('/api/news', news)
 app.use('/api/profils', profil)
 
 const port = process.env.PORT || 5000

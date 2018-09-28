@@ -8,5 +8,5 @@ const keys = {
     },
   },
 }
-
+console.log("prod")
 exports.keys = keys

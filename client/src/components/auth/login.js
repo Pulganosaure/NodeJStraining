@@ -19,7 +19,7 @@ class Connect extends Component {
       [e.target.name]: e.target.value
     })
   }
-
+ 
     componentDidMount() {
       if(this.props.auth.isAuthenticated)
         this.props.history.push("/profil")
