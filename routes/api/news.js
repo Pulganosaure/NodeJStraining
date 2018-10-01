@@ -6,7 +6,7 @@ const passport = require('passport')
 
 const router = express.Router()
 
-
+ 
 // @route  GET api/news
 // @desc   return the 20 latest news
 // @access Public

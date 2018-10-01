@@ -2,10 +2,9 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 import setAuthToken from '../utils/setAuthToken'
-import { LOADING_DATA, CONNECT_USER } from './types'
+import { CONNECT_USER, DISCONNECT_USER } from './types'
 
 export const connectuser = (userData) => async dispatch => {
-  console.log(userData)
   try {
     const res = await axios.post('/api/users/login', userData)
     const { token } = res.data
@@ -13,15 +12,7 @@ export const connectuser = (userData) => async dispatch => {
     setAuthToken(token)
     // Decode token to get user userData
     const decoded = jwt_decode(token)
-
-    const profil = await axios.get('/api/profils/')
-    console.log(JSON.stringify(profil))
-    const value = {
-      isAuthenticated: true,
-      user: decoded,
-      stats: profil.data
-    }
-    dispatch(setCurrentUser(value))
+    dispatch(setCurrentUser(decoded))
   } catch (err) {
     console.log("error: " + err)
   }
@@ -29,16 +20,25 @@ export const connectuser = (userData) => async dispatch => {
 
 
 export const registUser = (userData) => async dispatch => {
+  console.log(userData)
   await axios.post('/api/users/register', userData).then()
 }
 
-export const loading = () => {
+// Log user out
+export const logoutUser = () => {
+  // Remove token from localStorage
+  localStorage.removeItem('jwtToken')
+  // Remove auth header for future requests
+  setAuthToken(false)
+  // Set current user to {} which will set isAuthenticated to false
   return {
-    type: LOADING_DATA,
+    type: DISCONNECT_USER,
+    payload: null,
   }
 }
 
 export const setCurrentUser = decoded => {
+  console.log(decoded)
   return {
     type: CONNECT_USER,
     payload: decoded,

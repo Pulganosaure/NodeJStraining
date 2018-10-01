@@ -20,7 +20,7 @@ router.get('/:page', passport.authenticate('jwt', {session: false}), async (req,
   //check if :page is not a number
   if(!isNaN(req.params.page)) {
     //request to the database
-    const Pictures = await Picture.findOne()
+    const Pictures = await Picture.find()
     //return the result, everything was fine
     res.status(200).json(Pictures)
   }

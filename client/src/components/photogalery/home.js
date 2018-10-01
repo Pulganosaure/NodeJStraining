@@ -1,8 +1,8 @@
 import React from 'react';
-//import '../Bootstrap/bootstrap.min.css'
+import axios from 'axios'
+
 import PhotoGalerySlideShow from './slideshow.js'
 import PhotoGaleryDisplayer from './gallery.js'
-import * as PictureAPI from '../../API/pictures.js'
 
 
 class PhotoGaleryHome extends React.Component {
@@ -49,9 +49,9 @@ class PhotoGaleryHome extends React.Component {
 
   async componentDidMount()
   {
-    const data = await PictureAPI.getPicturesCount()
+    const data = await axios.get("http://192.168.1.26:5000/api/pictures/")
     this.setState({
-      maxpage: Math.ceil(data.total / 20)
+      maxpage: Math.ceil(data.data / 20)
     })
   }
 

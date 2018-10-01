@@ -1,5 +1,5 @@
 import React from 'react';
-import * as PictureAPI from '../../API/pictures.js'
+import axios from 'axios'
 import '../../style/photodisplayer.css'
 class PhotoCard extends React.Component {
   constructor(props) {
@@ -109,9 +109,9 @@ class PhotoCard extends React.Component {
     }
 
     async componentWillReceiveProps(newProps) {
-      const data = await PictureAPI.getPictures(newProps.page)
+      const data = await axios.get(`http://192.168.1.26:5000/api/pictures/${newProps.page}`)
       this.setState({
-        datas: data,
+        datas: data.data,
       })
     }
 

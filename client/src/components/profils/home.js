@@ -7,6 +7,7 @@ import ProfilEvents from './events.js'
 import ProfileCharacters from './characters.js'
 import UserDashboard from './dashboard.js'
 import { getGw2Characters } from '../../actions/guildwars2Actions'
+import { getProfil } from '../../actions/profilActions'
 
 class ProfileHome extends React.Component {
   constructor(props) {
@@ -18,28 +19,32 @@ class ProfileHome extends React.Component {
     this.switchOnglet = this.switchOnglet.bind(this)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+
     if(!this.props.auth.isAuthenticated) {
       this.props.history.push("/login")
-      console.log(this.props.auth.stats)
     }
-    this.props.getGw2Characters()
+    await this.props.getProfil()
+    if(!this.props.profil.isCreated)
+      console.log("profil not created")
+
+
   }
 
   switchOnglet() {
     switch (this.state.onglet) {
       case 'Account':
-      return <ProfileAccount user={this.props.auth.user} />
+      return <ProfileAccount user={this.props.profil.user} />
       case 'Security':
       return <ProfileSecurity/>
       case 'Characters':
-      return <ProfileCharacters gw2={this.props.getGw2Characters}/>
+      return <ProfileCharacters/>
       case 'Archivements':
       return <ProfileArchivements/>
       case 'Events':
       return <ProfilEvents/>
       default:
-      return <UserDashboard user={this.props.auth.user} stats={this.props.auth.stats}/>
+      return <UserDashboard user={this.props.auth.user} stats={this.props.profil}/>
     }
   }
 
@@ -106,7 +111,7 @@ class ProfileHome extends React.Component {
             </ul>
           </div>
           <div className="col-10 pr-0">
-            {this.switchOnglet()}
+            {(this.props.profil.isCreated) ?this.switchOnglet() : "nope"}
           </div>
         </div>
       </Fragment>
@@ -115,9 +120,9 @@ class ProfileHome extends React.Component {
   }
 
   const mapStateToProps = (state) => ({
-    profile: state.profile,
+    profil: state.profil,
     auth: state.auth,
     gw2: state.gw2,
   })
 
-  export default connect(mapStateToProps, { getGw2Characters })(ProfileHome)
+  export default connect(mapStateToProps, { getGw2Characters, getProfil})(ProfileHome)

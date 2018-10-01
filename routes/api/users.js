@@ -13,6 +13,7 @@ const router = express.Router()
 // @desc   Register new user route
 // @access Public
 router.post('/register', async (req, res) => {
+  console.log(req.body)
   const user = await User.findOne({ email: req.body.email })
   if (user) {
     res.status(403).json('user already exist')
@@ -42,7 +43,7 @@ router.post('/login', async (req, res) => {
   const user = await User.findOne({ email })
 
   if (!user) {
-    res.status(400).json('User not found')
+    return res.status(400).json('User not found')
   }
   const match = await bcrypt.compareSync(password, user.passwordHash)
   if (match) {

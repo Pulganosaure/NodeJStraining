@@ -28,9 +28,9 @@ class EventHome extends React.Component {
           <div className="col-8 ml-3">
             <div className="row justify-content-md-center" >
               <div className="col">
-                {event_list.map(event => {
+                {event_list.map( (event, key) => {
                   return (
-                    <EventForm EventDetails={event}/>
+                    <EventForm key={key} EventDetails={event}/>
                   )
                 })
               }

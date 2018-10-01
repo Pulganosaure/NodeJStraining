@@ -10,7 +10,7 @@ class Register extends Component {
     super(props)
 
     this.state = {
-      username: '',
+      name: '',
       email: '',
       password: '',
       password2: '',
@@ -34,10 +34,10 @@ HandleSubmit(e)
 {
   e.preventDefault()
   console.log("hello")
-  if(this.state.password.length > 5 && this.state.username.length > 3 && this.state.password === this.state.password2 && this.state.email !== "")
+  if(this.state.password.length > 5 && this.state.name.length > 3 && this.state.password === this.state.password2 && this.state.email !== "")
   {
     console.log("check down")
-    this.props.registUser({username:this.state.username, password:this.state.password, email:this.state.email})
+    this.props.registUser({name:this.state.name, password:this.state.password, email:this.state.email})
   }
 
 }
@@ -49,7 +49,7 @@ HandleSubmit(e)
         <form onSubmit={this.HandleSubmit} className="mt-5">
           <div className="form-group">
             <label htmlFor="username_input">nom d'utilisateur :</label>
-            <input type="text" name="username" title="name" onChange={this.handleQueryInput} className="form-control"></input>
+            <input type="text" name="name" title="name" onChange={this.handleQueryInput} className="form-control"></input>
           </div>
           <div className="form-group">
             <label htmlFor="username_input">E-Mail :</label>

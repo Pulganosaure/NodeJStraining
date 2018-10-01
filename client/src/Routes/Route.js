@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import BGSData from '../components/BGSMonitoring/bgsmonitoring.js'
 import Login from '../components/auth/login.js'
+import Logout from '../components/auth/logout.js'
 import Register from '../components/auth/register.js'
 import ExpendTo from '../components/BGSMonitoring/expansionto.js'
 import ProfileHome from '../components/profils/home.js'
@@ -57,6 +58,10 @@ class RoutesList extends Component {
           <Route
             exact path='/Login'
             component={Login}
+          />
+          <Route
+            exact path='/disconnect'
+            component={Logout}
           />
         </Fragment>
     )

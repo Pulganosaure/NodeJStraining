@@ -1,9 +1,8 @@
-import {LOADING_DATA, CONNECT_USER } from '../actions/types'
+import {LOADING_DATA, CONNECT_USER, DISCONNECT_USER } from '../actions/types'
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  stats: {},
 }
 
 export default function authReducer (state = initialState, action) {
@@ -16,10 +15,11 @@ export default function authReducer (state = initialState, action) {
     case CONNECT_USER:
     return {
       ...state,
-      isAuthenticated: action.payload.isAuthenticated,
-      user: action.payload.user,
-      stats: action.payload.stats,
+      isAuthenticated: true,
+      user: action.payload,
     }
+    case DISCONNECT_USER:
+    return initialState
     default :
       return state
   }

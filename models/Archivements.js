@@ -20,8 +20,6 @@ const ArchivementSchema = new Schema({
   },
 })
 
-NewsSchema.plugin(uniqueValidator)
-
-
+ArchivementSchema.plugin(uniqueValidator)
 
 module.exports = Archivement = mongoose.model('archivements', ArchivementSchema)

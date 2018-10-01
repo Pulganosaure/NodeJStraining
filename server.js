@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 // ROUTES IMPORT
 const users = require('./routes/api/users')
 const profil = require('./routes/api/profil')
-//const archivements = require('./routes/api/archivements')
+const archivements = require('./routes/api/archivements')
 //const gwinfos = require('./routes/api/gwinfos')
 const pictures = require('./routes/api/pictures')
 const picturecommentary = require('./routes/api/picturecommentary')
@@ -37,7 +37,7 @@ app.use(cors())
 app.use(passport.initialize())
 
 // ROUTES API
-//app.use('/api/archivements', archivements)
+app.use('/api/archivements', archivements)
 app.use('/api/users', users)
 //app.use('/api/gwinfos', gwinfos)
 app.use('/api/pictures', pictures)
