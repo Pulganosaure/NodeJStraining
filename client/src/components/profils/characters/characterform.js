@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import loadcircle from '../../../assets/loading/loadcircle.gif'
 import TitleChar from './titlecharacter'
 import ClassChar from './classcharacter'
@@ -12,6 +13,7 @@ class Spinner extends React.Component {
       style={{height: "50px"}}
     />
   }
+
 }
 
 class CharactersForm extends React.Component {
@@ -22,9 +24,10 @@ class CharactersForm extends React.Component {
     }
   }
   async componentDidMount() {
-    const data = await gw2.getCharacterDetails(this.props.charName)
+    const data = await axios.get(`api/gwinfos/characters/details/${this.props.charName}/${this.props.apiKey}`)
+
     this.setState({
-      details: data,
+      details: data.data,
     })
   }
 

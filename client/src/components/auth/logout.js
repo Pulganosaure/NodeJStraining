@@ -9,7 +9,7 @@ class Logout extends Component {
         this.props.history.push("/")
         this.props.logoutUser()
         this.props.clearCurrentProfile()
-        this.props.history.push("/home")
+        this.props.history.push("/")
 
     }
 

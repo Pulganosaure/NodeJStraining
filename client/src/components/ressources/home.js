@@ -24,8 +24,12 @@ class RessourcesHome extends React.Component {
 
   render()
   {
+
     return (
       <Fragment>
+        <div className="separator">
+          <h1>test</h1>
+        </div>
         <table>
           <thead>
             <tr>
@@ -40,10 +44,9 @@ class RessourcesHome extends React.Component {
               </td>
             </tr>
           </thead>
-
           <tbody>
             {this.state.data.map((entry, key) =>
-              <tr key={key} className="RessourceLine">
+              <tr key={key} className="RessourceLine separator">
                 <td className="informations">
                   <h6>{entry.name}</h6>
                   <p>desc</p>

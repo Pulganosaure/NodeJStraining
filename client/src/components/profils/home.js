@@ -8,6 +8,7 @@ import ProfileCharacters from './characters.js'
 import UserDashboard from './dashboard.js'
 import { getGw2Characters } from '../../actions/guildwars2Actions'
 import { getProfil } from '../../actions/profilActions'
+import ProfileRegister from './profil/profilRegister'
 
 class ProfileHome extends React.Component {
   constructor(props) {
@@ -34,17 +35,17 @@ class ProfileHome extends React.Component {
   switchOnglet() {
     switch (this.state.onglet) {
       case 'Account':
-      return <ProfileAccount user={this.props.profil.user} />
+      return <ProfileAccount user={this.props.auth.user} profil={this.props.profil} />
       case 'Security':
       return <ProfileSecurity/>
       case 'Characters':
-      return <ProfileCharacters/>
+      return <ProfileCharacters apiKey={this.props.profil.Informations.gw2ApiKey}/>
       case 'Archivements':
       return <ProfileArchivements/>
       case 'Events':
       return <ProfilEvents/>
       default:
-      return <UserDashboard user={this.props.auth.user} stats={this.props.profil}/>
+      return <UserDashboard user={this.props.auth.user} stats={this.props.profil.Statistiques}/>
     }
   }
 
@@ -111,7 +112,9 @@ class ProfileHome extends React.Component {
             </ul>
           </div>
           <div className="col-10 pr-0">
-            {(this.props.profil.isCreated) ?this.switchOnglet() : "nope"}
+            {(this.props.profil.isCreated)
+              ? this.switchOnglet()
+              : <ProfileRegister/>}
           </div>
         </div>
       </Fragment>

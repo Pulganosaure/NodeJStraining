@@ -27,6 +27,10 @@ class Navbar extends React.Component {
                 exact to='/gallery'>
                 PhotoGalery
               </NavLink>
+              <NavLink
+                exact to='/tools'>
+                Tools
+              </NavLink>
             </div>
             <div className="auth">
               {(this.props.auth.isAuthenticated)

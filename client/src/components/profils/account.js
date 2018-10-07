@@ -5,7 +5,10 @@ class ProfileAccount extends React.Component {
 
   render()
   {
+    const { user, profil } = this.props
     return (
+
+
       <Fragment>
         <div className="row justify-content-md-center">
           <h1 className="">Account :</h1>
@@ -15,7 +18,7 @@ class ProfileAccount extends React.Component {
             <tbody>
               <tr>
                 <td>username :</td>
-                <td>{this.props.user.name}</td>
+                <td>{user.name}</td>
               </tr>
               <tr>
                 <td>email :</td>
@@ -27,7 +30,7 @@ class ProfileAccount extends React.Component {
               </tr>
               <tr>
                 <td>Archivements Points :</td>
-                <td>{this.props.user.archivementPoints}</td>
+                <td>{profil.Informations.archivementPoints}</td>
               </tr>
             </tbody>
           </table>

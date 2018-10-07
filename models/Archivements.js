@@ -5,7 +5,6 @@ const Schema = mongoose.Schema
 
 // Create UserSchema
 const ArchivementSchema = new Schema({
-
   category: {
     type: Number,
   },

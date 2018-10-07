@@ -1,45 +1,29 @@
 import React, {Fragment} from 'react'
-import EventForm from './eventform.js'
-import Countdown from 'react-countdown-now'
-import Calendar from 'react-calendar';
-
+import { connect } from 'react-redux'
+import Cal from './cal'
 class EventHome extends React.Component {
   state = {
-    date: new Date(),
   }
 
   render()
   {
-    const event_list = [{name: "blabla1", desc: "blabladesc1", date:"00:00:00"}, {name: "blabla2", desc: "blabladesc2", date:"00:00:00"}]
     return (
       <Fragment>
-        <div className="row">
-          <div className="col-3">
-            <div className="row mt-5">
-              <Calendar
-                onChange={this.onChange}
-                value={this.state.date}
-              />
+        {this.props.profil.Permissions.event_manager
+          ? <div>
+              <button className="ButtonCustom">Add Event</button>
             </div>
-            <div className="row mt-5">
-              <Countdown date={Date.now() + 1000000} />
-            </div>
-          </div>
-          <div className="col-8 ml-3">
-            <div className="row justify-content-md-center" >
-              <div className="col">
-                {event_list.map( (event, key) => {
-                  return (
-                    <EventForm key={key} EventDetails={event}/>
-                  )
-                })
-              }
-            </div>
-          </div>
-        </div>
-      </div>
+          : null
+        }
+        <Cal/>
     </Fragment>)
   }
 }
 
-export default EventHome
+
+const mapStateToProps = (state) => ({
+  profil: state.profil,
+  auth: state.auth,
+  gw2: state.gw2,
+})
+export default connect(mapStateToProps)(EventHome)

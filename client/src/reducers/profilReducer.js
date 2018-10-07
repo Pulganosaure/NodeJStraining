@@ -1,4 +1,4 @@
-import { LOADING_PROFIL, CLEAR_CURRENT_PROFIL} from '../actions/types'
+import { FETCH_PROFIL, CLEAR_CURRENT_PROFIL} from '../actions/types'
 const initialState = {
   isCreated: false,
   Informations: {},
@@ -8,7 +8,7 @@ const initialState = {
 
 export default function authReducer (state = initialState, action) {
   switch(action.type) {
-    case LOADING_PROFIL:
+    case FETCH_PROFIL:
     return {
       ...state,
       isCreated: true,

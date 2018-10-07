@@ -49,7 +49,7 @@ class PhotoGaleryHome extends React.Component {
 
   async componentDidMount()
   {
-    const data = await axios.get("http://192.168.1.26:5000/api/pictures/")
+    const data = await axios.get("api/pictures/")
     this.setState({
       maxpage: Math.ceil(data.data / 20)
     })

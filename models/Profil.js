@@ -20,6 +20,7 @@ const ProfilSchema = new Schema({
     event_manager: Boolean,
     event_creator: Boolean,
     user_manager: Boolean,
+    permissions_manager: Boolean,
     ressources_manager: Boolean,
     ressources_creator: Boolean,
   },

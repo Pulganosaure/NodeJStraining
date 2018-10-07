@@ -1,37 +1,28 @@
 import axios from 'axios'
-import {LOADING_PROFIL, CLEAR_CURRENT_PROFIL} from './types'
+import {FETCH_PROFIL, CLEAR_CURRENT_PROFIL} from './types'
 
-export const createProfile = (profileData, history) => dispatch => {
-  axios
-    .post('api/profile', profileData)
-    .then(res => history.push('/dashboard'))
-    .catch(err =>
-      dispatch({
-        type: LOADING_PROFIL,
-        payload: err.response.data,
-      })
-    )
+export const createProfile = (profileData) => async dispatch => {
+  axios.post('api/profil/register', profileData)
+  const profil = await axios.get('api/profils')
+  getProfil(profil)
+
 }
 
-export const getProfil = () => dispatch => {
-  axios
-    .get('http://192.168.1.26:5000/api/profils')
-    .then(res => {
-       let value = {
-        isCreated: true,
-        Informations: res.data.Informations,
-        Permissions: res.data.Permissions,
-        Statistiques: res.data.Statistiques,
-      }
-      dispatch(LoadProfil(value))
-
-    })
+export const getProfil = () => async dispatch => {
+  const profil = await axios.get('api/profils')
+  let value = {
+    isCreated: true,
+    Informations: profil.data.Informations,
+    Permissions: profil.data.Permissions,
+    Statistiques: profil.data.Statistiques,
+  }
+  dispatch(LoadProfil(value))
 }
 
 
 export const LoadProfil = profil => {
   return {
-    type: LOADING_PROFIL,
+    type: FETCH_PROFIL,
     payload: profil
   }
 }

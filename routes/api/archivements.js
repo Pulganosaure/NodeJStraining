@@ -8,7 +8,7 @@ const router = express.Router()
 // @desc   get archivements list
 // @access Public
 router.get('/', async (req, res) => {
-  const archivements = await Archivement.findOne()
+  const archivements = await Archivement.find()
   if(archivements)
     res.status(200).json(archivements)
   else {

@@ -4,12 +4,12 @@ import BGSData from '../components/BGSMonitoring/bgsmonitoring.js'
 import Login from '../components/auth/login.js'
 import Logout from '../components/auth/logout.js'
 import Register from '../components/auth/register.js'
-import ExpendTo from '../components/BGSMonitoring/expansionto.js'
 import ProfileHome from '../components/profils/home.js'
 import EventHome from '../components/events/home.js'
 import PhotoGaleryHome from '../components/photogalery/home.js'
 import MainPage from '../components/homepage/home.js'
 import RessourcesHome from '../components/ressources/home.js'
+import ToolsHome from '../components/tools/home.js'
 
 class RoutesList extends Component {
 
@@ -32,10 +32,6 @@ class RoutesList extends Component {
             component={RessourcesHome}
           />
           <Route
-            exact path='/expandto'
-            component={ExpendTo}
-          />
-          <Route
             exact path='/Profil'
             component={ProfileHome}
           />
@@ -50,6 +46,10 @@ class RoutesList extends Component {
           <Route
             exact path='/gallery/:id'
             component={PhotoGaleryHome}
+          />
+          <Route
+            exact path='/tools'
+            component={ToolsHome}
           />
           <Route
             exact path='/Register'

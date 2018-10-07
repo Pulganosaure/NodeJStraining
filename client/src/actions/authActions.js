@@ -20,7 +20,6 @@ export const connectuser = (userData) => async dispatch => {
 
 
 export const registUser = (userData) => async dispatch => {
-  console.log(userData)
   await axios.post('/api/users/register', userData).then()
 }
 

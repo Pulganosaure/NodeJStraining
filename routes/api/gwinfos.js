@@ -1,12 +1,10 @@
 const express = require('express')
-const mysql = require('mysql')
-const db = require('../../mysql/db')
-
+const axios = require('axios')
 const router = express.Router()
 // @route  GET api/gwinfos/classicons
 // @desc   get user list
 // @access Public
-router.get('/classicons/:name', (req, res) => {
+router.get('/classIcons/:name', (req, res) => {
   var results = ""
   const classicons = {
     Guardian: "https://render.guildwars2.com/file/6E0D0AC6E0CE5C0C29B3D736ABEA070F4A58540E/156633.png",
@@ -53,6 +51,27 @@ router.get('/classicons/:name', (req, res) => {
 
   }
   res.json({classIcon: results})
+})
+  router.get('/characters/details/:name/:apiKey', async (req, res) => {
+    //if(req.params.name === "" || req.params.apiKey)
+    console.log(req.params)
+    const data = await axios.get(`https://api.guildwars2.com/v2/characters/${req.params.name}/core?access_token=${req.params.apiKey}`)
+    .catch(err => res.status(400).json(err))
+    res.status(200).json(data.data)
+  })
+
+router.get('/characters/:apiKey', async (req, res) => {
+  const data = await axios.get(`https://api.guildwars2.com/v2/characters?access_token=${req.params.apiKey}`)
+    .catch(err => res.status(400).json(err))
+  res.status(200).json(data.data)
+
+})
+
+router.get('/title/:titleId', async (req, res) => {
+  const data = await axios.get(`https://api.guildwars2.com/v2/titles?lang=fr&id=${req.params.titleId}`)
+  .catch(err => res.status(400).json(err))
+  console.log(data.data)
+  res.status(200).json(data.data)
 })
 
 

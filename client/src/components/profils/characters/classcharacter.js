@@ -1,6 +1,5 @@
-import React, {Fragment} from 'react'
-import gw2 from '../../../API/gw2.js'
-import * as gw2infos from '../../../API/gw2infos.js'
+import React from 'react'
+import axios from 'axios'
 
 
 class ClassChar extends React.Component {
@@ -11,9 +10,9 @@ class ClassChar extends React.Component {
     }
   }
   async componentDidMount() {
-    const classIcon = await gw2infos.getCLassIcon(this.props.className)
+    const classIcon = await axios.get(`api/gwinfos/classIcons/${this.props.className}`)
     this.setState({
-      iconClassurl: classIcon.classIcon
+      iconClassurl: classIcon.data.classIcon
     })
   }
   render() {

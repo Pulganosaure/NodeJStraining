@@ -14,7 +14,7 @@ import setAuthToken from './utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
 
 import { setCurrentUser, logoutUser } from './actions/authActions'
-import { clearCurrentProfile } from './actions/profilActions'
+import { clearCurrentProfile, getProfil } from './actions/profilActions'
 
 
 const store = createStore(rooReducer, composeWithDevTools(middleware))
@@ -24,6 +24,7 @@ if (localStorage.jwtToken) {
   setAuthToken(localToken)
   const decoded = jwt_decode(localToken)
   store.dispatch(setCurrentUser(decoded))
+  store.dispatch(getProfil())
 
   // Automatic logout
   const currentTime = Date.now()/1000

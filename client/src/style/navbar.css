@@ -1,5 +1,10 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+
 .navabar
 {
+  font-family: 'Open Sans';
   background-color: #000;
   color: #212529;
   position: fixed;
@@ -25,20 +30,20 @@
 .menu
 {
   display: -ms-flexbox;
-display: flex;
--ms-flex-pack: justify;
-justify-content: space-between;
-width: 100%;
-height: -moz-available;
-height: stretch;
-margin: 0 auto;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  height: -moz-available;
+  height: stretch;
+  margin: 0 auto;
 }
 .auth, .navMenu
 {
   display: -ms-flexbox;
-display: flex;
--ms-flex-align: center;
-align-items: center;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .nav-container

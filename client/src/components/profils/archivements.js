@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import * as archivementsAPI from '../../API/archivements'
+import axios from 'axios'
 
 
 class ProfileArchivements extends React.Component {
@@ -10,21 +10,13 @@ class ProfileArchivements extends React.Component {
     }
     this.archivementCard = this.archivementCard.bind(this)
   }
-  componentDidMount() {
-    archivementsAPI.getArchivements()
-    .then(data => {
-      data.push({
-        title: "more comming soon",
-        description: "and more trophy gonna be added soon...",
-        unlock: false,
-        rank: "none",
-        value: "0",
-      })
-      this.setState({
-        archivements: data,
-      })
+  async componentDidMount() {
+    const data = await axios.get("api/archivements")
+    this.setState({
+      archivements: data.data,
     })
   }
+
   archivementCard(archivement)
   {
     return (
@@ -48,13 +40,13 @@ class ProfileArchivements extends React.Component {
           {
             this.state.archivements.map((archivement, index) =>
 
-                <div key={index} className="col mb-4">
-                  {this.archivementCard(archivement)}
-                </div>
-              )
-            }
-          </div>
-      </Fragment>
-      )}
-    }
-    export default ProfileArchivements
+            <div key={index} className="col mb-4">
+              {this.archivementCard(archivement)}
+            </div>
+          )
+        }
+      </div>
+    </Fragment>
+  )}
+}
+export default ProfileArchivements

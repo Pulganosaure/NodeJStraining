@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react'
-import gw2 from '../../../API/gw2.js'
+import React from 'react'
+import axios from 'axios'
 
 
 class TitleChar extends React.Component {
@@ -10,9 +10,10 @@ class TitleChar extends React.Component {
     }
   }
   async componentDidMount() {
-    const data = await gw2.getCurrentTitle(this.props.id)
+    const data = await axios.get(`api/gwinfos/title/${this.props.id}`)
+
     this.setState({
-      name: data.name
+      name: data.data.name
     })
   }
   render() {
