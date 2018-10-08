@@ -5,19 +5,31 @@
   display: inline-flex;
 
 }
-.CalendarCol
+.CalendarRow
 {
-  text-align: center;
+
+  border-bottom: 1px solid black;
 
 }
 
 .CalendarCell
 {
-  width:auto;
+  width: 10%;
   text-align: center;
-
-
+  border: 1px solid black;
+  height: 50px;
 }
+.CalendarCell > span
+{
+  text-align: right;
+  position: block;
+}
+
+.CalendarCell :hover
+{
+background-color: red;
+}
+
 .brah
 {
   width:33%;
@@ -25,7 +37,32 @@
   text-align: center;
 }
 
-.disabled
+.celldisabled
 {
-  background-color: black;
+background-color: #8e9196;
+}
+.celldisabled > span
+{
+  color: black;
+}
+
+.event
+{
+  width: 100%;
+  background-color: rgb(80, 171, 240, 0.7);
+  min-height: 50%;
+}
+.event :hover
+{
+  background-color: rgb(80, 171, 240, 1);
+}
+
+
+.EventMenu
+{
+  width: 50%;
+  position: absolute;
+  left:50%;
+  top: 0;
+  background-color: 100;
 }

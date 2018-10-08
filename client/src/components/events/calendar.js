@@ -1,4 +1,4 @@
-import '../../style/test.css'
+//import '../../style/test.css'
 import React from "react";
 import dateFns from "date-fns";
 var eoLocale = require('date-fns/locale/fr')

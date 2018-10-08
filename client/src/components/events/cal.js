@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react'
+import EventMenuDisplayer from './eventMenuDisplayer.js'
 import '../../style/calendar.css'
 
 var moment = require('moment')
@@ -11,7 +12,8 @@ class Cal extends React.Component {
     this.state = {
 
       month: new Date().getMonth(),
-      calendar: []
+      calendar: [],
+      events: [1, 2, 5]
     }
     this.renderHeader = this.renderHeader.bind(this)
     this.renderMonth = this.renderMonth.bind(this)
@@ -42,14 +44,14 @@ class Cal extends React.Component {
           //onClick={() => this.state.month === 0 ?this.setState({month: 12}) : this.setState({month: this.state.month-1})}
           onClick={() => this.setState({month: this.state.month-1})}
           >
-            Reduce
+            previous
           </button>
           <h1 className="brah">{moment().month(this.state.month).format('MMMM YYYY').toString()}</h1>
           <button className="brah"
             onClick={() =>  this.setState({month: this.state.month+1})}
             //onClick={() => this.state.month === 12 ?this.setState({month: 0}) : this.setState({month: this.state.month+1})}
             >
-              Augment
+              next
             </button>
           </div>
         )
@@ -59,6 +61,7 @@ class Cal extends React.Component {
       {
         let startWeek = moment().startOf('month').year(2019).month(this.state.month).isoWeek();
         let endWeek = moment().endOf('month').year(2019).month(this.state.month).isoWeek();
+        //in case if the december have 1 in endWeek
         if(endWeek < startWeek)
           endWeek = startWeek+5
 
@@ -74,7 +77,7 @@ class Cal extends React.Component {
         return (
           calendar.map((week, key) => {
             return (
-              <tr key={key}>
+              <tr key={key} className="CalendarRow">
                 {
                   week.days.map((day, key) => {
                     console.log(this.state.month + ' | ' + day.month())
@@ -84,8 +87,16 @@ class Cal extends React.Component {
 
                       ? <td key={key} className="CalendarCell">
                           <span>{day.date()}</span>
+                          {
+                            (this.state.events.includes(day.date()))
+                          ?
+                            <div className="event">
+                              Event prévu
+                            </div>
+                          : null
+                          }
                         </td>
-                      : <td key={key} className="CalendarCell disabled">
+                      : <td key={key} className="CalendarCell celldisabled">
                           <span>{day.date()}</span>
                         </td>
                     )})
@@ -99,7 +110,6 @@ class Cal extends React.Component {
 
               return (
                 <Fragment>
-
                   {this.renderMonth()}
                   <table>
                     <thead>
